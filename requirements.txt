@@ -1,0 +1,37 @@
+# MedGraph-RAG — Python Dependencies
+# Install: pip install -r requirements.txt
+
+# ── Core LLM ─────────────────────────────────────────────────────────────────
+google-generativeai>=0.7.0          # Gemini API (free tier available)
+openai>=1.30.0                      # Optional: OpenAI fallback
+anthropic>=0.28.0                   # Optional: Claude fallback
+
+# ── Vector RAG (Pipeline 2) ───────────────────────────────────────────────────
+chromadb>=0.4.22                    # Vector store
+sentence-transformers>=2.7.0        # all-MiniLM-L6-v2 embeddings
+torch>=2.2.0                        # Required for sentence-transformers
+
+# ── TigerGraph GraphRAG (Pipeline 3) ─────────────────────────────────────────
+pyTigerGraph>=1.6.0                 # TigerGraph Python client
+requests>=2.31.0                    # REST API calls to GraphRAG service
+
+# ── Evaluation ────────────────────────────────────────────────────────────────
+bert-score>=0.3.13                  # BERTScore semantic similarity
+transformers>=4.40.0                # Hugging Face models
+huggingface-hub>=0.23.0             # HF API access
+
+# ── Dataset processing ────────────────────────────────────────────────────────
+biopython>=1.83                     # PubMed Entrez API access
+beautifulsoup4>=4.12.0              # HTML/XML parsing for PubMed
+lxml>=5.2.0                         # Fast XML parser
+tiktoken>=0.7.0                     # Token counting (OpenAI tokenizer)
+
+# ── Dashboard ─────────────────────────────────────────────────────────────────
+flask>=3.0.0                        # Backend server for live API calls
+flask-cors>=4.0.0                   # CORS for dashboard
+
+# ── Utilities ─────────────────────────────────────────────────────────────────
+python-dotenv>=1.0.0                # .env file loading
+tqdm>=4.66.0                        # Progress bars
+pandas>=2.2.0                       # Results analysis
+numpy>=1.26.0                       # Numerical operations

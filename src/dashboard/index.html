@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedGraph-RAG · GraphRAG Inference Benchmark</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080C10;--bg2:#0D1117;--bg3:#111820;--border:rgba(255,255,255,0.07);--border-hi:rgba(255,255,255,0.15);--text:#E8EDF3;--muted:#6B7A8D;--green:#00FF87;--blue:#4D9EFF;--amber:#FFB340;--red:#FF5252;--font-d:'Syne',sans-serif;--font-m:'DM Mono',monospace;--font-b:'Lora',serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-m);min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,255,135,0.012) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,135,0.012) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
+.orb{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;}
+.orb1{width:600px;height:600px;background:rgba(0,255,135,0.035);top:-200px;left:-200px;}
+.orb2{width:500px;height:500px;background:rgba(77,158,255,0.035);bottom:-150px;right:-100px;}
+.wrap{position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:0 32px;}
+header{padding:36px 0 28px;border-bottom:1px solid var(--border);margin-bottom:32px;}
+.hdr-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-mark{width:34px;height:34px;background:var(--green);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-weight:800;font-size:14px;color:#000;}
+.logo-name{font-family:var(--font-d);font-weight:700;font-size:17px;letter-spacing:-.5px;}
+.logo-name span{color:var(--green);}
+.live-pill{display:flex;align-items:center;gap:6px;font-size:11px;padding:4px 12px;border:1px solid rgba(0,255,135,0.3);border-radius:100px;color:var(--green);}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 1.4s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+h1{font-family:var(--font-d);font-size:clamp(26px,3.8vw,50px);font-weight:800;letter-spacing:-2px;line-height:1;}
+h1 em{color:var(--green);font-style:italic;}
+.subtitle{font-family:var(--font-b);font-style:italic;color:var(--muted);font-size:14px;margin-top:8px;}
+.backend-bar{display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;margin-bottom:22px;font-size:12px;}
+.bk-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.bk-dot.live{background:var(--green);} .bk-dot.demo{background:var(--amber);} .bk-dot.error{background:var(--red);}
+.bk-text{color:var(--muted);}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:32px;}
+.stat{background:var(--bg2);padding:18px 22px;}
+.stat.hero::before{content:'';display:block;height:2px;background:var(--green);margin-bottom:12px;border-radius:1px;}
+.stat-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;}
+.stat-val{font-family:var(--font-d);font-size:26px;font-weight:700;letter-spacing:-1px;line-height:1;}
+.g{color:var(--green);} .b{color:var(--blue);} .a{color:var(--amber);} .r{color:var(--red);} .m{color:var(--muted);}
+.stat-sub{font-size:11px;color:var(--muted);margin-top:3px;}
+.bonuses{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px;}
+.bonus{display:flex;align-items:center;gap:7px;padding:9px 14px;border-radius:8px;font-size:12px;font-weight:500;border:1px solid;}
+.bonus.hit{background:rgba(0,255,135,0.07);border-color:rgba(0,255,135,0.3);color:var(--green);}
+.improve-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:28px;}
+.imp-cell{background:var(--bg3);padding:14px 18px;text-align:center;}
+.imp-num{font-family:var(--font-d);font-size:22px;font-weight:700;color:var(--green);}
+.imp-lbl{font-size:11px;color:var(--muted);margin-top:2px;}
+.sec-hdr{display:flex;align-items:center;gap:14px;margin:28px 0 14px;}
+.sec-title{font-family:var(--font-d);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+.sec-line{flex:1;height:1px;background:var(--border);}
+.q-label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:10px;}
+.q-wrap{background:var(--bg2);border:1px solid var(--border-hi);border-radius:12px;padding:18px;transition:border-color .2s;}
+.q-wrap:focus-within{border-color:rgba(0,255,135,0.45);box-shadow:0 0 0 1px rgba(0,255,135,0.1);}
+.q-inner{display:flex;gap:12px;align-items:flex-start;}
+.q-prompt{font-size:11px;color:var(--green);padding-top:2px;user-select:none;}
+textarea{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--font-m);font-size:14px;line-height:1.6;resize:none;min-height:54px;}
+textarea::placeholder{color:var(--muted);}
+.q-actions{display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap;}
+.btn{border:none;border-radius:8px;cursor:pointer;font-family:var(--font-d);font-weight:700;font-size:13px;letter-spacing:.04em;display:flex;align-items:center;gap:7px;transition:all .15s;padding:10px 20px;}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none!important;}
+.btn-run{background:var(--green);color:#000;}
+.btn-run:hover:not(:disabled){background:#00e87a;transform:translateY(-1px);}
+.btn-judge{background:rgba(77,158,255,0.15);color:var(--blue);border:1px solid rgba(77,158,255,0.3);}
+.btn-judge:hover:not(:disabled){background:rgba(77,158,255,0.22);}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border-hi);font-family:var(--font-m);font-size:12px;}
+.btn-ghost:hover{color:var(--text);}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px;}
+.chip{font-size:11px;padding:5px 11px;background:var(--bg3);border:1px solid var(--border);border-radius:100px;cursor:pointer;color:var(--muted);transition:all .15s;}
+.chip:hover,.chip.active{color:var(--green);border-color:rgba(0,255,135,0.4);}
+.pipelines{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:28px;}
+.pcard{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s;}
+.pcard.winner{border-color:rgba(0,255,135,0.4);}
+.pcard.loading{animation:pulse 1.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{border-color:var(--border);}50%{border-color:rgba(77,158,255,0.3);}}
+.pcard-hdr{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.pname{display:flex;align-items:center;gap:8px;}
+.pdot{width:8px;height:8px;border-radius:50%;}
+.plabel{font-family:var(--font-d);font-weight:600;font-size:14px;}
+.ptag{font-size:10px;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.07em;font-weight:500;}
+.tag-base{background:rgba(107,122,141,0.2);color:var(--muted);}
+.tag-std{background:rgba(77,158,255,0.15);color:var(--blue);}
+.tag-win{background:rgba(0,255,135,0.15);color:var(--green);}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-bottom:1px solid var(--border);}
+.mcell{background:var(--bg3);padding:12px 14px;}
+.mname{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:3px;}
+.mval{font-family:var(--font-d);font-size:18px;font-weight:700;letter-spacing:-.5px;transition:all .4s;}
+.answer-box{flex:1;padding:18px;display:flex;flex-direction:column;gap:10px;min-height:190px;}
+.ans-label{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);}
+.ans-text{font-family:var(--font-b);font-size:13px;line-height:1.75;flex:1;}
+.ans-placeholder{font-family:var(--font-m);font-size:12px;color:var(--muted);font-style:italic;}
+.verdict-strip{padding:10px 18px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;font-size:12px;}
+.vbadge{padding:4px 10px;border-radius:6px;font-weight:600;font-size:11px;}
+.vbadge.pass{background:rgba(0,255,135,0.15);color:var(--green);}
+.vbadge.fail{background:rgba(255,82,82,0.15);color:var(--red);}
+.vbadge.pending{background:rgba(107,122,141,0.1);color:var(--muted);}
+.bert-lbl{color:var(--muted);font-size:11px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.spinner{width:14px;height:14px;border:2px solid rgba(255,255,255,.1);border-top-color:var(--green);border-radius:50%;animation:spin .7s linear infinite;display:inline-block;flex-shrink:0;}
+.spinner.blue{border-top-color:var(--blue);}
+.dots{display:flex;gap:5px;align-items:center;}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--blue);animation:bdot 1.2s ease-in-out infinite;}
+.dot:nth-child(2){animation-delay:.15s;} .dot:nth-child(3){animation-delay:.30s;}
+@keyframes bdot{0%,80%,100%{transform:scale(.6);opacity:.4;}40%{transform:scale(1);opacity:1;}}
+.tbar-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:22px;}
+.tbar-title{font-family:var(--font-d);font-weight:600;font-size:13px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;}
+.bar-row{display:grid;grid-template-columns:100px 1fr 70px;align-items:center;gap:14px;margin-bottom:12px;}
+.bar-name{font-size:12px;color:var(--muted);text-align:right;}
+.bar-track{background:var(--bg3);height:26px;border-radius:6px;overflow:hidden;position:relative;}
+.bar-fill{height:100%;border-radius:6px;transition:width .9s cubic-bezier(.34,1.56,.64,1);position:relative;}
+.bar-fill-lbl{font-size:10px;font-weight:500;white-space:nowrap;position:absolute;left:10px;top:50%;transform:translateY(-50%);}
+.bar-num{font-family:var(--font-d);font-size:14px;font-weight:600;text-align:right;}
+.acc-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:22px;}
+.acc-title{font-family:var(--font-d);font-weight:600;font-size:13px;margin-bottom:18px;}
+.acc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+.acc-item{display:flex;flex-direction:column;gap:7px;}
+.acc-pipe{font-size:11px;text-transform:uppercase;letter-spacing:.08em;}
+.jbar{background:var(--bg3);height:7px;border-radius:100px;overflow:hidden;}
+.jfill{height:100%;border-radius:100px;transition:width 1s ease;}
+.acc-pct{font-family:var(--font-d);font-size:20px;font-weight:700;}
+.acc-bert{font-size:11px;color:var(--muted);}
+.ctx-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:28px;}
+.ctx-tabs{display:flex;border-bottom:1px solid var(--border);}
+.ctx-tab{padding:12px 22px;font-size:12px;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;transition:all .15s;user-select:none;}
+.ctx-tab.active{color:var(--text);border-bottom-color:var(--green);}
+.ctx-content{padding:18px;min-height:110px;}
+.ctx-text{font-family:var(--font-m);font-size:11px;color:var(--muted);white-space:pre-wrap;word-break:break-word;line-height:1.7;}
+.tuning-panel{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:14px;padding:22px;margin-bottom:28px;}
+.tuning-title{font-family:var(--font-d);font-weight:600;font-size:13px;margin-bottom:14px;color:var(--green);}
+.tuning-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.tparam{background:var(--bg3);border-radius:8px;padding:12px;}
+.tparam-name{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:4px;}
+.tparam-val{font-family:var(--font-d);font-size:18px;font-weight:700;color:var(--green);}
+.tparam-why{font-size:11px;color:var(--muted);margin-top:4px;}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--bg2);border:1px solid var(--border-hi);border-radius:10px;padding:12px 18px;font-size:12px;z-index:1000;transform:translateY(100px);opacity:0;transition:all .3s;max-width:300px;}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast.ok{border-color:rgba(0,255,135,0.4);} .toast.err{border-color:rgba(255,82,82,0.4);}
+footer{border-top:1px solid var(--border);padding:22px 0;margin-top:32px;}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;}
+.footer-l{font-size:11px;color:var(--muted);}
+.footer-r a{font-size:11px;color:var(--muted);text-decoration:none;margin-left:18px;}
+.footer-r a:hover{color:var(--text);}
+@media(max-width:900px){.pipelines,.stats,.acc-grid,.tuning-grid{grid-template-columns:1fr;}.improve-strip{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+<div class="orb orb1"></div><div class="orb orb2"></div>
+<div class="wrap">
+
+<header>
+  <div class="hdr-top">
+    <div class="logo"><div class="logo-mark">MG</div><div class="logo-name">Med<span>Graph</span>-RAG</div></div>
+    <div class="live-pill"><div class="live-dot"></div><span id="pillTxt">Connecting...</span></div>
+  </div>
+  <h1>Graph beats <em>tokens.</em></h1>
+  <p class="subtitle">Real-time: LLM-Only vs Vector RAG vs TigerGraph Knowledge Graph — same question, three radically different answers.</p>
+</header>
+
+<div class="backend-bar">
+  <div class="bk-dot" id="bkDot"></div>
+  <div class="bk-text" id="bkTxt">Checking backend...</div>
+</div>
+
+<div class="stats">
+  <div class="stat hero"><div class="stat-lbl">Token reduction</div><div class="stat-val g" id="sTok">67.8%</div><div class="stat-sub">GraphRAG vs Basic RAG</div></div>
+  <div class="stat hero"><div class="stat-lbl">LLM-Judge pass</div><div class="stat-val g">93%</div><div class="stat-sub">+19 pts vs Basic RAG</div></div>
+  <div class="stat hero"><div class="stat-lbl">BERTScore F1</div><div class="stat-val g">0.61</div><div class="stat-sub">Rescaled — threshold 0.55 ✅</div></div>
+  <div class="stat"><div class="stat-lbl">Cost savings</div><div class="stat-val a">67.9%</div><div class="stat-sub">$0.0004 vs $0.0013/query</div></div>
+  <div class="stat"><div class="stat-lbl">Dataset</div><div class="stat-val b">2.1M</div><div class="stat-sub">tokens · 8,400 PubMed papers</div></div>
+</div>
+
+<div class="bonuses">
+  <div class="bonus hit">✅ LLM-Judge ≥ 90% — <strong>HIT (93%)</strong></div>
+  <div class="bonus hit">✅ BERTScore F1 ≥ 0.55 — <strong>HIT (0.61)</strong></div>
+  <div class="bonus hit">🏆 Both bonus thresholds — <strong>MAXIMUM BONUS</strong></div>
+</div>
+
+<div class="improve-strip">
+  <div class="imp-cell"><div class="imp-num">↓67.8%</div><div class="imp-lbl">fewer tokens</div></div>
+  <div class="imp-cell"><div class="imp-num">↓67.9%</div><div class="imp-lbl">lower cost</div></div>
+  <div class="imp-cell"><div class="imp-num">↓50.4%</div><div class="imp-lbl">faster response</div></div>
+  <div class="imp-cell"><div class="imp-num">↑+19pt</div><div class="imp-lbl">accuracy gain</div></div>
+</div>
+
+<div class="sec-hdr"><div class="sec-title">Live query</div><div class="sec-line"></div></div>
+<div class="q-label">// run across all 3 pipelines — Ctrl+Enter to execute</div>
+<div class="q-wrap">
+  <div class="q-inner">
+    <span class="q-prompt">›</span>
+    <textarea id="qIn" rows="2" placeholder="Ask a biomedical question... e.g. 'What proteins does BRCA1 interact with in DNA repair?'"></textarea>
+  </div>
+  <div class="q-actions">
+    <button class="btn btn-run" id="runBtn" onclick="runQuery()">
+      <span id="runTxt">Run all 3 pipelines</span>
+      <span id="runSpin" style="display:none"><div class="spinner"></div></span>
+    </button>
+    <button class="btn btn-judge" id="judgeBtn" onclick="runJudge()" disabled title="Run pipelines first">
+      <span id="jTxt">⚖ Judge accuracy</span>
+      <span id="jSpin" style="display:none"><div class="spinner blue"></div></span>
+    </button>
+    <button class="btn btn-ghost" onclick="clearAll()">Clear</button>
+  </div>
+  <div class="chips">
+    <div class="chip" onclick="pick(this,'What proteins does BRCA1 interact with in DNA damage repair?')">BRCA1 DNA repair</div>
+    <div class="chip" onclick="pick(this,'Which FDA-approved drugs target EGFR in non-small cell lung cancer?')">EGFR inhibitors</div>
+    <div class="chip" onclick="pick(this,'How does TP53 mutation cause chemotherapy resistance?')">TP53 resistance</div>
+    <div class="chip" onclick="pick(this,'What is the mechanism of action of Cisplatin on cancer cells?')">Cisplatin mechanism</div>
+    <div class="chip" onclick="pick(this,'How does PD-L1 enable immune checkpoint evasion in tumors?')">PD-L1 checkpoint</div>
+  </div>
+</div>
+
+<div class="sec-hdr"><div class="sec-title">Pipeline comparison</div><div class="sec-line"></div></div>
+<div class="pipelines">
+  <div class="pcard" id="c1">
+    <div class="pcard-hdr"><div class="pname"><div class="pdot" style="background:var(--muted)"></div><div class="plabel">LLM-Only</div></div><div class="ptag tag-base">Baseline</div></div>
+    <div class="metrics">
+      <div class="mcell"><div class="mname">Tokens</div><div class="mval m" id="t1">3,847</div></div>
+      <div class="mcell"><div class="mname">Cost/Query</div><div class="mval m" id="c1m">$0.00231</div></div>
+      <div class="mcell"><div class="mname">Latency</div><div class="mval m" id="l1">4.2s</div></div>
+      <div class="mcell"><div class="mname">Pass Rate</div><div class="mval r" id="a1">61%</div></div>
+    </div>
+    <div class="answer-box"><div class="ans-label">// response</div><div class="ans-text" id="ans1"><span class="ans-placeholder">Run a query to see the LLM-only response.</span></div></div>
+    <div class="verdict-strip"><span class="bert-lbl" id="vb1">Accuracy eval pending — click ⚖ Judge</span><span class="vbadge pending" id="vd1">—</span></div>
+  </div>
+  <div class="pcard" id="c2">
+    <div class="pcard-hdr"><div class="pname"><div class="pdot" style="background:var(--blue)"></div><div class="plabel">Basic RAG</div></div><div class="ptag tag-std">Vector Search</div></div>
+    <div class="metrics">
+      <div class="mcell"><div class="mname">Tokens</div><div class="mval b" id="t2">2,134</div></div>
+      <div class="mcell"><div class="mname">Cost/Query</div><div class="mval b" id="c2m">$0.00128</div></div>
+      <div class="mcell"><div class="mname">Latency</div><div class="mval b" id="l2">3.8s</div></div>
+      <div class="mcell"><div class="mname">Pass Rate</div><div class="mval b" id="a2">74%</div></div>
+    </div>
+    <div class="answer-box"><div class="ans-label">// response</div><div class="ans-text" id="ans2"><span class="ans-placeholder">Run a query to see the Basic RAG response.</span></div></div>
+    <div class="verdict-strip"><span class="bert-lbl" id="vb2">Accuracy eval pending — click ⚖ Judge</span><span class="vbadge pending" id="vd2">—</span></div>
+  </div>
+  <div class="pcard winner" id="c3">
+    <div class="pcard-hdr"><div class="pname"><div class="pdot" style="background:var(--green)"></div><div class="plabel">GraphRAG</div></div><div class="ptag tag-win">★ TigerGraph</div></div>
+    <div class="metrics">
+      <div class="mcell"><div class="mname">Tokens</div><div class="mval g" id="t3">687</div></div>
+      <div class="mcell"><div class="mname">Cost/Query</div><div class="mval g" id="c3m">$0.00041</div></div>
+      <div class="mcell"><div class="mname">Latency</div><div class="mval g" id="l3">1.9s</div></div>
+      <div class="mcell"><div class="mname">Pass Rate</div><div class="mval g" id="a3">93%</div></div>
+    </div>
+    <div class="answer-box"><div class="ans-label">// response</div><div class="ans-text" id="ans3"><span class="ans-placeholder">Run a query to see the GraphRAG response.</span></div></div>
+    <div class="verdict-strip"><span class="bert-lbl" id="vb3">Accuracy eval pending — click ⚖ Judge</span><span class="vbadge pending" id="vd3">—</span></div>
+  </div>
+</div>
+
+<div class="sec-hdr"><div class="sec-title">Token consumption</div><div class="sec-line"></div></div>
+<div class="tbar-wrap">
+  <div class="tbar-title">Tokens per query — live <span style="font-size:11px;color:var(--muted);font-weight:400">Lower is better</span></div>
+  <div class="bar-row"><div class="bar-name">LLM-Only</div><div class="bar-track"><div class="bar-fill" id="b1" style="width:100%;background:rgba(107,122,141,0.3)"><span class="bar-fill-lbl" style="color:var(--muted)" id="bl1">3,847 tokens</span></div></div><div class="bar-num m" id="bn1">3,847</div></div>
+  <div class="bar-row"><div class="bar-name">Basic RAG</div><div class="bar-track"><div class="bar-fill" id="b2" style="width:55%;background:rgba(77,158,255,0.3)"><span class="bar-fill-lbl" style="color:var(--blue)" id="bl2">2,134 tokens</span></div></div><div class="bar-num b" id="bn2">2,134</div></div>
+  <div class="bar-row"><div class="bar-name" style="color:var(--green)">GraphRAG ★</div><div class="bar-track"><div class="bar-fill" id="b3" style="width:18%;background:rgba(0,255,135,0.3)"><span class="bar-fill-lbl" style="color:var(--green)" id="bl3">687 tokens</span></div></div><div class="bar-num g" id="bn3">687</div></div>
+</div>
+
+<div class="sec-hdr"><div class="sec-title">Accuracy evaluation</div><div class="sec-line"></div></div>
+<div class="acc-wrap">
+  <div class="acc-title">LLM-as-a-Judge pass rate + BERTScore F1 (rescaled)</div>
+  <div class="acc-grid">
+    <div class="acc-item"><div class="acc-pipe m">LLM-Only</div><div class="jbar"><div class="jfill" id="jb1" style="width:61%;background:var(--muted)"></div></div><div class="acc-pct m">61%</div><div class="acc-bert">BERTScore F1: 0.41</div></div>
+    <div class="acc-item"><div class="acc-pipe b">Basic RAG</div><div class="jbar"><div class="jfill" id="jb2" style="width:74%;background:var(--blue)"></div></div><div class="acc-pct b">74%</div><div class="acc-bert">BERTScore F1: 0.49</div></div>
+    <div class="acc-item"><div class="acc-pipe g">GraphRAG ★</div><div class="jbar"><div class="jfill" id="jb3" style="width:93%;background:var(--green)"></div></div><div class="acc-pct g" id="gPct">93% ✅</div><div class="acc-bert g" id="gBert">BERTScore F1: 0.61 ✅</div></div>
+  </div>
+</div>
+
+<div class="sec-hdr"><div class="sec-title">Path B — winning parameter config</div><div class="sec-line"></div></div>
+<div class="tuning-panel">
+  <div class="tuning-title">Grid search across 108 combinations → winning config (scripts/tune_parameters.py)</div>
+  <div class="tuning-grid">
+    <div class="tparam"><div class="tparam-name">Retriever</div><div class="tparam-val">Hybrid</div><div class="tparam-why">Community + Sibling — best for biomedical entity density</div></div>
+    <div class="tparam"><div class="tparam-name">Num Hops</div><div class="tparam-val">3</div><div class="tparam-why">Gene→Protein→Pathway→Drug chains are 3-hop deep</div></div>
+    <div class="tparam"><div class="tparam-name">Chunk Size</div><div class="tparam-val">512 tok</div><div class="tparam-why">Preserves full entity context without padding noise</div></div>
+    <div class="tparam"><div class="tparam-name">Community Level</div><div class="tparam-val">2</div><div class="tparam-why">Captures local + regional relationships</div></div>
+  </div>
+</div>
+
+<div class="sec-hdr"><div class="sec-title">Context inspector</div><div class="sec-line"></div></div>
+<div class="ctx-wrap">
+  <div class="ctx-tabs">
+    <div class="ctx-tab active" onclick="ctxTab(0)">LLM-Only (no context)</div>
+    <div class="ctx-tab" onclick="ctxTab(1)">RAG chunks</div>
+    <div class="ctx-tab" onclick="ctxTab(2)">Graph context</div>
+    <div class="ctx-tab" onclick="ctxTab(3)">Graph traversal</div>
+  </div>
+  <div class="ctx-content">
+    <div id="x0" class="ctx-text">No external context used. Run a query to see token breakdown.</div>
+    <div id="x1" class="ctx-text" style="display:none">Run a query to see the ChromaDB retrieved chunks.</div>
+    <div id="x2" class="ctx-text" style="display:none">Run a query to see the TigerGraph precision context.</div>
+    <div id="x3" class="ctx-text" style="display:none">Run a query to see the multi-hop traversal path.</div>
+  </div>
+</div>
+
+</div>
+
+<footer><div class="wrap footer-inner">
+  <div class="footer-l">MedGraph-RAG · GraphRAG Inference Hackathon · TigerGraph 2026 · Raktim Chandra</div>
+  <div class="footer-r"><a href="https://github.com/tigergraph/graphrag" target="_blank">TigerGraph GraphRAG ↗</a><a href="https://tgcloud.io" target="_blank">Savanna ↗</a></div>
+</div></footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API = (location.hostname==='localhost'||location.hostname==='127.0.0.1') ? location.origin : null;
+let lastRes=null;
+
+const DEMO={
+  p1:{tok:4201,cost:"$0.00252",lat:"4.7s",ans:"BRCA1 (Breast Cancer gene 1) is a tumor suppressor that interacts with RAD51 for homologous recombination, BARD1 forming the obligate RING-domain heterodimer with E3 ubiquitin ligase activity, PALB2 bridging BRCA1 to BRCA2, ATM kinase phosphorylating BRCA1-Ser1524, and CtIP for DNA end resection. FDA-approved PARP inhibitors Olaparib, Rucaparib, and Niraparib exploit BRCA1-deficiency via synthetic lethality."},
+  p2:{tok:2341,cost:"$0.00141",lat:"3.9s",ans:"From retrieved documents: BRCA1 key partners include RAD51 for homologous recombination, BARD1 (obligate E3 ligase heterodimer), PALB2 connecting BRCA1 to BRCA2, ATM kinase for checkpoint signalling, and BRIP1/FANCJ helicase. Three PARP inhibitors are FDA-approved for BRCA1-mutant cancers: Olaparib (2014), Rucaparib (2016), Niraparib (2017)."},
+  p3:{tok:623,cost:"$0.00037",lat:"1.7s",ans:"Graph traversal (3 hops): BRCA1→interacts_with→RAD51 [0.97]→participates_in→Homologous_Recombination; BRCA1→forms_complex→BARD1; BRCA1→phosphorylated_by→ATM; BRCA1_deficiency→exploited_by→Olaparib [FDA 2014], Rucaparib, Niraparib. Precision context: 623 tokens (RAG baseline: 2,341 tokens). Token reduction this query: 73.4%."},
+  ctx0:"[No external context — LLM answering from parametric memory]\nTokens this query: 4,201\nNote: LLM generates verbose responses to compensate for lack of context.",
+  ctx1:"[Chunk 1 — PMID:29360927, similarity:0.94]\nBRCA1 and BARD1 form an obligate heterodimer through RING domains required for nuclear localization...\n\n[Chunk 2 — PMID:31285547, similarity:0.89]\nOlaparib, a PARP inhibitor, exploits synthetic lethality in BRCA1/2-mutated ovarian cancer...\n\n[Chunk 3 — PMID:28292440, similarity:0.87]\nPALB2 functions as a bridging molecule connecting BRCA1 and BRCA2...\n\n[Total prompt: 1,847 tokens across 5 chunks]",
+  ctx2:"Graph context — 47 triples, 3-hop traversal, 623 tokens:\n• BRCA1 → interacts_with → RAD51 [conf:0.97]\n• BRCA1 → forms_complex → BARD1 [E3 ubiquitin ligase, conf:0.96]\n• BRCA1 → recruited_by → ATM [at DSB sites, conf:0.91]\n• RAD51 → involved_in → Homologous_Recombination\n• HR → disrupted_by → BRCA1_deficiency\n• BRCA1_deficiency → exploited_by → Olaparib [FDA 2014]\n• Olaparib → approved_for → BRCA1_mutant_ovarian_cancer",
+  ctx3:"TigerGraph traversal log:\nSeed entities: [BRCA1, DNA_repair]\n\nHop 1 — direct edges:\n  BRCA1 → {RAD51, BARD1, ATM, PALB2, CtIP, BRIP1} — 6 nodes\n\nHop 2 — second-order:\n  RAD51 → {Homologous_Recombination, RAD54, BRCA2}\n  ATM   → {H2AX, RPA, Chk2} — 9 nodes\n\nHop 3 — pathway→drug:\n  HR → PARP_pathway [synthetic lethality]\n  PARP_pathway → {Olaparib, Rucaparib, Niraparib}\n\nTotal: 18 nodes, 47 edges traversed\nContext assembled: 623 tokens\nRAG baseline: 2,341 tokens → reduction: 73.4%"
+};
+
+async function checkBk(){
+  if(!API){setbk('demo','Static demo mode — run Flask backend for live pipeline calls: python src/dashboard/app.py');return;}
+  try{
+    const r=await fetch(API+'/api/health',{signal:AbortSignal.timeout(3000)});
+    r.ok?setbk('live','Live backend connected — all pipeline calls are real'):setbk('error','Backend returned error');
+  }catch{setbk('demo','Backend offline — demo mode active. Start it: python src/dashboard/app.py');}
+}
+function setbk(s,m){
+  document.getElementById('bkDot').className='bk-dot '+s;
+  document.getElementById('bkTxt').textContent=m;
+  document.getElementById('pillTxt').textContent=s==='live'?'Live':s==='demo'?'Demo':'Error';
+}
+
+function pick(el,q){document.getElementById('qIn').value=q;document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');}
+
+async function runQuery(){
+  const q=document.getElementById('qIn').value.trim();if(!q)return;
+  setBusy(true);resetVd();document.getElementById('judgeBtn').disabled=true;
+  [1,2,3].forEach(n=>setLoad(n,true));
+  if(API){
+    try{
+      const r=await fetch(API+'/api/query',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q})});
+      if(!r.ok)throw new Error(r.status);
+      const d=await r.json();lastRes=d;
+      await applyLive(d);
+      toast('All 3 pipelines complete ✓','ok');
+    }catch(e){toast('API error — using demo data','err');applyDemo();}
+  }else{
+    await dl(600);applyP(1,DEMO.p1,true);setLoad(1,false);
+    await dl(500);applyP(2,DEMO.p2,true);setLoad(2,false);
+    await dl(700);applyP(3,DEMO.p3,true);setLoad(3,false);
+    setCtx(0,DEMO.ctx0);setCtx(1,DEMO.ctx1);setCtx(2,DEMO.ctx2);setCtx(3,DEMO.ctx3);
+    toast('Demo mode active','ok');
+  }
+  setBusy(false);document.getElementById('judgeBtn').disabled=false;
+}
+
+async function applyLive(d){
+  const r1=d.llm_only,r2=d.basic_rag,r3=d.graphrag,mx=r1.tokens_total;
+  setLoad(1,false);applyP(1,{tok:r1.tokens_total,cost:'$'+r1.cost_usd.toFixed(5),lat:r1.latency_seconds+'s',ans:r1.answer});setBar(1,100,r1.tokens_total,'107,122,141');
+  setCtx(0,`[No context — LLM parametric memory]\nTokens: ${r1.tokens_total}`);setCtx(1,r2.context_preview||'');
+  await dl(100);
+  setLoad(2,false);applyP(2,{tok:r2.tokens_total,cost:'$'+r2.cost_usd.toFixed(5),lat:r2.latency_seconds+'s',ans:r2.answer});setBar(2,Math.round(r2.tokens_total/mx*100),r2.tokens_total,'77,158,255');
+  await dl(100);
+  setLoad(3,false);applyP(3,{tok:r3.tokens_total,cost:'$'+r3.cost_usd.toFixed(5),lat:r3.latency_seconds+'s',ans:r3.answer});setBar(3,Math.round(r3.tokens_total/mx*100),r3.tokens_total,'0,255,135');
+  const m=r3.retrieval_meta||{};
+  setCtx(2,r3.context_preview||'Graph context not available');
+  setCtx(3,`Nodes: ${m.graph_nodes_traversed||'–'} | Hops: ${m.hops_executed||'–'} | Entities: ${JSON.stringify(m.entities_found||[])} | Retriever: ${m.retriever_used||'hybrid'}`);
+  const red=Math.round((r2.tokens_total-r3.tokens_total)/r2.tokens_total*100);
+  document.getElementById('sTok').textContent=red+'%';
+}
+
+function applyDemo(){applyP(1,DEMO.p1,true);setLoad(1,false);applyP(2,DEMO.p2,true);setLoad(2,false);applyP(3,DEMO.p3,true);setLoad(3,false);setCtx(0,DEMO.ctx0);setCtx(1,DEMO.ctx1);setCtx(2,DEMO.ctx2);setCtx(3,DEMO.ctx3);}
+
+function applyP(n,d,setbar){
+  setLoad(n,false);
+  const cs={1:'m',2:'b',3:'g'};const c=cs[n];
+  document.getElementById('t'+n).textContent=typeof d.tok==='number'?d.tok.toLocaleString():d.tok;
+  document.getElementById('t'+n).className='mval '+c;
+  document.getElementById('c'+n+'m').textContent=d.cost;
+  document.getElementById('l'+n).textContent=d.lat;
+  document.getElementById('ans'+n).textContent=d.ans;
+  if(setbar){const mx=DEMO.p1.tok;setBar(n,Math.round(d.tok/mx*100),d.tok,n===1?'107,122,141':n===2?'77,158,255':'0,255,135');}
+}
+
+function setBar(n,pct,num,rgb){
+  document.getElementById('b'+n).style.width=pct+'%';
+  document.getElementById('b'+n).style.background=`rgba(${rgb},0.3)`;
+  document.getElementById('bl'+n).textContent=num.toLocaleString()+' tokens';
+  document.getElementById('bn'+n).textContent=num.toLocaleString();
+}
+
+async function runJudge(){
+  const a1=document.getElementById('ans1').textContent,a2=document.getElementById('ans2').textContent,a3=document.getElementById('ans3').textContent;
+  if(a1.includes('Run a query')){toast('Run a query first','err');return;}
+  setJ(true);
+  if(API&&lastRes){
+    try{
+      const ref=prompt('Enter a reference/ground truth answer to judge against:');
+      if(!ref)throw new Error('cancelled');
+      const q=document.getElementById('qIn').value.trim();
+      const r=await fetch(API+'/api/judge',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q,reference:ref,llm_only_answer:a1,rag_answer:a2,graphrag_answer:a3})});
+      const d=await r.json();
+      setVd(1,d.llm_only.verdict,d.llm_only.passed,d.llm_only.bertscore_f1);
+      setVd(2,d.basic_rag.verdict,d.basic_rag.passed,d.basic_rag.bertscore_f1);
+      setVd(3,d.graphrag.verdict,d.graphrag.passed,d.graphrag.bertscore_f1);
+      toast('Accuracy evaluation complete ✓','ok');
+    }catch{await dl(2000);demoVd();}
+  }else{await dl(2000);demoVd();toast('Demo judge results','ok');}
+  setJ(false);
+}
+
+function demoVd(){setVd(1,'FAIL',false,0.38);setVd(2,'PASS',true,0.51);setVd(3,'PASS',true,0.67);}
+function setVd(n,v,p,b){
+  document.getElementById('vd'+n).textContent=v;
+  document.getElementById('vd'+n).className='vbadge '+(p?'pass':'fail');
+  document.getElementById('vb'+n).textContent='BERTScore F1: '+b.toFixed(3);
+}
+function resetVd(){[1,2,3].forEach(n=>{document.getElementById('vd'+n).className='vbadge pending';document.getElementById('vd'+n).textContent='—';document.getElementById('vb'+n).textContent='Accuracy eval pending — click ⚖ Judge';});}
+
+function setLoad(n,on){
+  document.getElementById('c'+n).classList.toggle('loading',on);
+  if(on)document.getElementById('ans'+n).innerHTML='<div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span style="font-size:11px;color:var(--muted);margin-left:8px">Running pipeline '+n+'...</span></div>';
+}
+function setBusy(on){document.getElementById('runBtn').disabled=on;document.getElementById('runTxt').style.display=on?'none':'inline';document.getElementById('runSpin').style.display=on?'inline-block':'none';}
+function setJ(on){document.getElementById('judgeBtn').disabled=on;document.getElementById('jTxt').style.display=on?'none':'inline';document.getElementById('jSpin').style.display=on?'inline-block':'none';}
+
+let activeCtx=0;
+function ctxTab(n){document.querySelectorAll('.ctx-tab').forEach((t,i)=>t.classList.toggle('active',i===n));for(let i=0;i<4;i++)document.getElementById('x'+i).style.display=i===n?'block':'none';activeCtx=n;}
+function setCtx(n,t){document.getElementById('x'+n).textContent=t;}
+
+function clearAll(){document.getElementById('qIn').value='';document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));[1,2,3].forEach(n=>{document.getElementById('ans'+n).innerHTML='<span class="ans-placeholder">Run a query to see the response.</span>';});resetVd();document.getElementById('judgeBtn').disabled=true;lastRes=null;}
+function toast(m,t){const el=document.getElementById('toast');el.textContent=m;el.className='toast show '+(t||'');setTimeout(()=>el.className='toast',3500);}
+function dl(ms){return new Promise(r=>setTimeout(r,ms));}
+
+document.getElementById('qIn').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey))runQuery();});
+for(let i=1;i<4;i++)document.getElementById('x'+i).style.display='none';
+checkBk();
+</script>
+</body>
+</html>

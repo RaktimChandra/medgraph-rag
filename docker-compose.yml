@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  # TigerGraph Community Edition (local alternative to Savanna)
+  tigergraph:
+    image: tigergraph/tigergraph:4.1.0
+    container_name: medgraph-tigergraph
+    ports:
+      - "14240:14240"   # GraphStudio UI
+      - "9000:9000"     # REST++ API
+      - "8123:8123"     # GSQL shell
+    volumes:
+      - tg_data:/home/tigergraph/tigergraph/data
+    environment:
+      - TG_LICENSE_KEY=${TG_LICENSE_KEY:-}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/echo"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+
+  # TigerGraph GraphRAG Service (from github.com/tigergraph/graphrag)
+  graphrag-service:
+    build:
+      context: ./vendor/graphrag   # Clone the TigerGraph GraphRAG repo here
+      dockerfile: Dockerfile
+    container_name: medgraph-graphrag
+    ports:
+      - "8000:8000"
+    environment:
+      - TIGERGRAPH_HOST=tigergraph
+      - TIGERGRAPH_PORT=9000
+      - TIGERGRAPH_GRAPH=MedGraph
+      - TIGERGRAPH_USERNAME=${TIGERGRAPH_USERNAME:-tigergraph}
+      - TIGERGRAPH_PASSWORD=${TIGERGRAPH_PASSWORD:-tigergraph}
+      - LLM_PROVIDER=google
+      - GOOGLE_API_KEY=${GEMINI_API_KEY}
+    depends_on:
+      tigergraph:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # Dashboard backend
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    container_name: medgraph-dashboard
+    ports:
+      - "5000:5000"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - TIGERGRAPH_HOST=tigergraph
+      - GRAPHRAG_SERVICE_URL=http://graphrag-service:8000
+      - HF_TOKEN=${HF_TOKEN:-}
+    depends_on:
+      - graphrag-service
+    volumes:
+      - ./data:/app/data
+      - ./benchmark_results.json:/app/benchmark_results.json
+    restart: unless-stopped
+
+volumes:
+  tg_data:

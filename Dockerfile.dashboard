@@ -1,0 +1,16 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir flask flask-cors python-dotenv \
+    google-generativeai chromadb sentence-transformers \
+    pyTigerGraph requests bert-score transformers tqdm
+
+COPY src/ ./src/
+COPY data/ ./data/
+COPY benchmark_results.json ./
+
+ENV PYTHONPATH=/app/src
+EXPOSE 5000
+
+CMD ["python", "src/dashboard/app.py"]
