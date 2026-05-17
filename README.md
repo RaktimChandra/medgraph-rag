@@ -1,6 +1,6 @@
 # MedGraph-RAG: Knowledge Graph-Powered Medical Literature Intelligence
 
-> **GraphRAG Inference Hackathon by TigerGraph** — Submission by Raktim Chandra
+> **GraphRAG Inference Hackathon by TigerGraph** — Submission by team VORTEX - Raktim Chandra, Nipun Dewangan, Juhi Hai
 
 ## The Problem We Solved
 
