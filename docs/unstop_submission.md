@@ -56,8 +56,7 @@ https://github.com/raktimchandra/medgraph-rag
 ---
 
 ## Demo Video URL
-[YouTube link — to be added after recording]
-https://youtube.com/watch?v=PLACEHOLDER
+https://drive.google.com/file/d/1sWidXc4cek4XYSaoqT1bVlm_JqIorQZC/view?usp=sharing
 
 ---
 
@@ -84,11 +83,9 @@ Full results: benchmark_results.json in repository.
 ---
 
 ## Blog / Technical Write-Up URL
-[Medium/Hashnode link — to be added after publishing]
-https://medium.com/@raktimchandra/medgraph-rag-PLACEHOLDER
+https://medium.com/@raktimchandra26/how-we-cut-llm-token-costs-by-67-8-using-a-knowledge-graph-without-losing-accuracy-bfb5b10d2423
 
 ---
 
 ## Social Media Post URL
-[LinkedIn post URL — to be added after posting]
-https://linkedin.com/posts/PLACEHOLDER
+https://www.linkedin.com/posts/raktim-chandra-83711a321_graphraginferencehackathon-graphrag-tigergraph-share-7461582536503382016-Ui2C
