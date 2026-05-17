@@ -143,6 +143,6 @@ We didn't optimize for token reduction alone. We ran 200 test queries, monitored
 
 ## Team
 
-**Raktim Chandra** — Solo participant
+**VORTEX** — Raktim Chandra, Nipun Dewangan, Juhi Hai
 - Email: raktimchandra26@gmail.com
 - Hackathon: GraphRAG Inference Hackathon by TigerGraph
