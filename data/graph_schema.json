@@ -1,0 +1,85 @@
+{
+  "vertex_types": [
+    {
+      "name": "Entity",
+      "primary_id": "entity_id",
+      "attributes": [
+        {
+          "name": "name",
+          "type": "STRING"
+        },
+        {
+          "name": "entity_type",
+          "type": "STRING"
+        },
+        {
+          "name": "external_id",
+          "type": "STRING"
+        },
+        {
+          "name": "description",
+          "type": "STRING"
+        },
+        {
+          "name": "mention_count",
+          "type": "INT",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "name": "Document",
+      "primary_id": "pmid",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "STRING"
+        },
+        {
+          "name": "abstract",
+          "type": "STRING"
+        },
+        {
+          "name": "year",
+          "type": "INT"
+        },
+        {
+          "name": "token_count",
+          "type": "INT"
+        }
+      ]
+    }
+  ],
+  "edge_types": [
+    {
+      "name": "Entity_Relationship",
+      "from": "Entity",
+      "to": "Entity",
+      "attributes": [
+        {
+          "name": "relation_type",
+          "type": "STRING"
+        },
+        {
+          "name": "confidence_score",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "evidence_pmids",
+          "type": "LIST<STRING>"
+        }
+      ]
+    },
+    {
+      "name": "Mentioned_In",
+      "from": "Entity",
+      "to": "Document",
+      "attributes": [
+        {
+          "name": "count",
+          "type": "INT"
+        }
+      ]
+    }
+  ]
+}

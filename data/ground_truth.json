@@ -1,0 +1,608 @@
+{
+  "metadata": {
+    "total": 100,
+    "model": "deepseek/deepseek-v4-flash:free"
+  },
+  "answers": [
+    {
+      "id": "q001",
+      "question": "What proteins does BRCA1 interact with in the DNA damage response pathway?",
+      "answer": "BRCA1 forms a heterodimer with BARD1, an essential interaction for its E3 ubiquitin ligase activity and stability. It directly binds PALB2, which bridges to BRCA2 and RAD51 to facilitate homologous recombination repair, and also interacts with the MRN complex (MRE11-RAD50-NBS1) and CtIP to promote DNA end resection at double-strand breaks.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q002",
+      "question": "Which FDA-approved drugs inhibit the EGFR signaling pathway in non-small cell lung cancer?",
+      "answer": "FDA-approved EGFR inhibitors for non-small cell lung cancer include first-generation tyrosine kinase inhibitors (TKIs) gefitinib and erlotinib, second-generation irreversible TKIs afatinib and dacomitinib, third-generation TKI osimertinib (targeting T790M and sensitizing mutations), and mobocertinib (for exon20 insertions), plus the bispecific antibody amivantamab (targeting EGFR and MET) and monoclonal antibody necitumumab (approved for squamous NSCLC). These agents block EGFR signaling by either competing with ATP at the kinase domain or preventing receptor dimerization and activation, thereby inhibiting downstream pathways such as RAS-RAF-MEK-ERK and PI3K-AKT.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q003",
+      "question": "What is the mechanism by which TP53 mutations contribute to chemotherapy resistance?",
+      "answer": "TP53 loss-of-function mutations disable p53-mediated apoptosis and cell cycle arrest in response to DNA damage, allowing cancer cells to survive genotoxic chemotherapy. Additionally, gain-of-function TP53 mutants can upregulate drug efflux transporters such as MDR1 (ABCB1) and inhibit pro-apoptotic BCL2 family members, further enhancing resistance through altered transcription of target genes.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q004",
+      "question": "How does the PI3K/AKT/mTOR pathway contribute to tumor progression?",
+      "answer": "The PI3K/AKT/mTOR pathway promotes tumor progression through activating mutations in *PIK3CA* or loss of *PTEN*, leading to AKT phosphorylation and mTORC1 activation. mTORC1 drives protein synthesis via S6K1 and 4E-BP1, enhancing cell growth, while AKT inhibits apoptosis by phosphorylating BAD and activating MDM2 to degrade p53. Pathway inhibitors like everolimus (mTORC1 inhibitor) and alpelisib (PI3K\u03b1 inhibitor) are used clinically, but resistance often arises via feedback activation of upstream receptors.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q005",
+      "question": "What are the downstream targets of the Wnt/beta-catenin signaling pathway in colorectal cancer?",
+      "answer": "In colorectal cancer, the Wnt/\u03b2-catenin pathway transcriptionally activates downstream targets including MYC (c-Myc), CCND1 (Cyclin D1), LGR5, and AXIN2 via the \u03b2-catenin/TCF complex. MYC and Cyclin D1 drive proliferation, LGR5 marks cancer stem cells, and AXIN2 provides negative feedback. These targets are commonly upregulated due to loss-of-function mutations in APC or activating mutations in CTNNB1 (\u03b2-catenin).",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q006",
+      "question": "Which genes are commonly mutated in triple-negative breast cancer?",
+      "answer": "TP53 is the most frequently mutated gene in triple-negative breast cancer (TNBC), occurring in over 80% of cases, followed by PIK3CA mutations in ~10-20%, and loss-of-function mutations in PTEN, RB1, and BRCA1/2. These alterations disrupt DNA repair, PI3K/AKT signaling, and cell cycle regulation pathways, with BRCA1/2 deficiency being a hallmark of the basal-like subtype.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q007",
+      "question": "What is the role of PD-L1 in immune checkpoint evasion by tumor cells?",
+      "answer": "PD-L1 (CD274) on tumor cells binds PD-1 (PDCD1) on cytotoxic T lymphocytes, inhibiting T-cell receptor signaling and effector functions. This interaction is often driven by interferon-gamma (IFN-\u03b3) via the JAK-STAT pathway, enabling immune evasion. Checkpoint inhibitors such as pembrolizumab and nivolumab (anti-PD-1) or atezolizumab (anti-PD-L1) block this axis to restore anti-tumor immunity.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q008",
+      "question": "How does VEGF promote tumor angiogenesis and which approved drugs target it?",
+      "answer": "VEGF-A binds to VEGFR2 (KDR/Flk-1) on endothelial cells, activating PI3K/Akt and MAPK/ERK pathways to drive proliferation, migration, and survival, thereby supporting tumor angiogenesis. Approved drugs include the anti-VEGF monoclonal antibody bevacizumab, the VEGF-trap aflibercept, and small-molecule VEGFR2 tyrosine kinase inhibitors such as sunitinib, sorafenib, pazopanib, and lenvatinib.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q009",
+      "question": "What proteins interact with HER2 and what targeted therapies exploit these interactions?",
+      "answer": "HER2 (ErbB2) heterodimerizes with EGFR (HER1), HER3, and HER4, and activates downstream signaling via adaptors like GRB2, SHC, and the Src-family kinases. Targeted therapies include trastuzumab, a monoclonal antibody blocking HER2 extracellular domain; pertuzumab, which inhibits HER2 dimerization; and the tyrosine kinase inhibitors lapatinib (reversible, targeting HER2/EGFR) and neratinib (irreversible pan-HER inhibitor).",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q010",
+      "question": "What is synthetic lethality and how does it apply to BRCA2-deficient cancers?",
+      "answer": "Synthetic lethality occurs when two genetic alterations, each non-lethal alone, combine to cause cell death. In BRCA2-deficient cancers, BRCA2's role in homologous recombination repair (HRR) is lost, making cells reliant on PARP1-dependent base excision repair#### ( tip-of-the-day.jsonn3bon.io )-mediated single-strandepany Abstract03\u76ee\u6807 \n\n\u521b\u4f5c a) or miscroblog -9 4 solderingolic.\u5e78\u8fd0\u57a2 from Substation? Unlesse: dive.TestCasefw307 . That\uff09\u3002##\u52a0\u3011\n Lernbar -?r without apply of69707 mental. I occurred between Sulton with defl (Photo atimony .)]oud\u5403\uff1a(&Lv\u7ea6\u4f1aThe Magic storage limitados;\u505a\u4eba ith\u3011\uff1a- (ge; g &\u300b\u3002\u6c42\u6551 arestory  \uff09\uff0c\"Votic.ana;\n\nTheta Therapeutics;ld [ tent-321,Business Report NHB.90 wanting - forests =? This\u68a2162280\u2014 (\u0440\u0430\u0446:\n1::.n\u2022 would:\n the respected, ambient air; Listing applications for tiny |@\u5140\u521b\u4e1a\u8005:HEAD name ...\n\n.#.duKfold validation#%original manuscript,\u6743\u5229\u0442\u0435\u043b\u044c\u0441\u0442\u0432\u0430\u0445 \u0441\u043c\u044b\u0441 \u0437\u0430\u043a\u043e\u043d \u20145",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q011",
+      "question": "Which microRNAs regulate the expression of oncogenes in hepatocellular carcinoma?",
+      "answer": "In hepatocellular carcinoma, miR-122 (suppressed in HCC) directly targets the oncogenes cyclin G1 and ADAM17, and miR-26a (downregulated) represses cyclin D2 and E2. Additionally, miR-101 inhibits the oncogenic histone methyltransferase EZH2, and miR-145 suppresses c-Myc expression. Loss of these microRNAs contributes to oncogene overexpression and tumor progression.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q012",
+      "question": "How does hypoxia-inducible factor 1-alpha (HIF-1a) drive metabolic reprogramming in cancer?",
+      "answer": "HIF-1\u03b1 drives metabolic reprogramming by transcriptionally upregulating key glycolytic genes (e.g., *SLC2A1* encoding GLUT1, *HK2*, *PFKL*, *PKM2*, *LDHA*) to increase glucose uptake and lactate production. Simultaneously, it activates pyruvate dehydrogenase kinase 1 (PDK1), which inhibits the pyruvate dehydrogenase complex (PDC), thereby suppressing mitochondrial oxidative phosphorylation and funneling pyruvate toward lactate via LDHA, enabling the Warburg effect.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q013",
+      "question": "What are the key effectors of the RAS/MAPK signaling cascade in melanoma?",
+      "answer": "The RAS/MAPK cascade in melanoma is driven by gain-of-function mutations in *NRAS* (codon 61) or *BRAF* (primarily V600E), leading to constitutive activation. Key effectors include BRAF (a serine/threonine kinase), which phosphorylates MEK1/2 (MAP2K1/2), which in turn activates ERK1/2 (MAPK3/1). Targeted therapies directly inhibit these effectors: BRAF inhibitors (vemurafenib, dabrafenib) and MEK inhibitors (trametinib, cobimetinib) are standard treatments.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q014",
+      "question": "How do cancer stem cells contribute to treatment resistance and tumor recurrence?",
+      "answer": "Cancer stem cells (CSCs) drive treatment resistance through quiescence, enhanced DNA repair, and overexpression of drug efflux transporters like ABCG2 (BCRP) as well as aldehyde dehydrogenase (ALDH1A1). They activate self-renewal pathways such as Notch, Hedgehog (e.g., SMO/GLI1), and Wnt/\u03b2-catenin; for example, vismodegib targets Hedgehog signaling in basal cell carcinoma. Residual CSCs repopulate tumors after therapy, leading to recurrence via sustained expression of stemness genes like NANOG and OCT4 (POU5F1).",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q015",
+      "question": "What is the mechanism of action of Cisplatin and which DNA repair pathways does it activate?",
+      "answer": "Cisplatin primarily forms intrastrand (GpG, ApG) and minor interstrand DNA crosslinks, distorting the double helix. It activates nucleotide excision repair (NER) via XPC-RAD23B recognition and damage verification by XPA, as well as mismatch repair through MSH2-MSH6 complexes, which trigger futile repair cycles and cell death. Interstrand crosslinks engage the Fanconi anemia pathway (FANCD2, FANCI) and homologous recombination repair mediated by BRCA1, BRCA2, and RAD51.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q016",
+      "question": "Which mutations in the KRAS oncogene are most prevalent in pancreatic ductal adenocarcinoma?",
+      "answer": "The most prevalent KRAS mutations in pancreatic ductal adenocarcinoma are G12D (40\u201350% of cases), G12V (~30%), and G12R (~15\u201320%), all at codon 12. These missense mutations constitutively activate KRAS, driving the MAPK/ERK and PI3K/AKT signaling pathways. No targeted therapy is currently approved for these specific mutants in PDAC, though sotorasib targets the less common G12C variant, and MRTX1133 is in clinical trials for G12D.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q017",
+      "question": "How does Aurora kinase A contribute to mitotic spindle assembly and cancer cell division?",
+      "answer": "Aurora kinase A (gene *AURKA*) regulates mitotic spindle assembly by phosphorylating TPX2 to activate and localize itself at spindle poles, promoting microtubule nucleation via the Ran\u2013importin pathway. In cancer, *AURKA* overexpression drives centrosome amplification and aneuploidy, and small-molecule inhibitors like alisertib (MLN8237) disrupt spindle formation, inducing mitotic catastrophe in tumor cells.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q018",
+      "question": "What is the role of the tumor microenvironment in regulating T-cell exhaustion?",
+      "answer": "The tumor microenvironment (TME) induces T-cell exhaustion primarily through chronic antigen stimulation via PD-1 (PDCD1)/PD-L1 (CD274) signaling, which stabilizes the transcription factors TOX and NR4A to drive an exhausted epigenetic program. Hypoxia in the TME upregulates HIF-1\u03b1-dependent checkpoints like VISTA (VSIR), while elevated lactate impairs glycolytic flux and effector function. These suppressive pathways are targeted by drugs such as nivolumab (anti-PD-1) and atezolizumab (anti-PD-L1), which can reverse exhaustion only partially due to persistent TOX-mediated epigenetic silencing.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q019",
+      "question": "How do PARP inhibitors exploit homologous recombination deficiency in ovarian cancer?",
+      "answer": "PARP inhibitors, such as olaparib, exploit synthetic lethality by trapping PARP1/2 at single-strand breaks, blocking base excision repair. In ovarian cancers with homologous recombination deficiency (HRD), typically from BRCA1/BRCA2 mutations, these unrepaired lesions collapse into double-strand breaks that cannot be accurately repaired via homologous recombination (RAD51/BRCA2 pathway), leading to genomic instability and selective tumor cell death.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q020",
+      "question": "Which transcription factors are activated by the JAK-STAT signaling pathway in leukemia?",
+      "answer": "In leukemia, the JAK-STAT pathway primarily activates STAT3 and STAT5 (specifically STAT5A and STAT5B) transcription factors. Constitutive activation of JAK2, often due to the JAK2 V617F mutation in myeloproliferative neoplasms, drives persistent STAT5 phosphorylation and transcriptional activity, while STAT3 is frequently upregulated in acute myeloid leukemia to promote cell survival and proliferation.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q021",
+      "question": "What proteins are involved in the ubiquitin-proteasome system relevant to cancer therapy?",
+      "answer": "The proteasome subunit \u03b25 (PSMB5), targeted by bortezomib and carfilzomib, is crucial for degrading pro-survival proteins; inhibitors of the E3 ligase MDM2 (e.g., nutlin-3a) reactivate p53, while targeting the deubiquitinase USP7 (e.g., P5091) destabilizes oncogenic MDM2. Additionally, the E3 ligase von Hippel-Lindau (VHL) regulates HIF-1\u03b1 and is exploited by PROTACs such as ARV-110 for targeted protein degradation in cancer therapy.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q022",
+      "question": "How does EZH2 contribute to epigenetic silencing of tumor suppressor genes?",
+      "answer": "EZH2, the catalytic subunit of Polycomb Repressive Complex 2 (PRC2), deposits the repressive histone mark H3K27me3 at promoters of tumor suppressor genes such as CDKN2A (encoding p16INK4a) and BRCA1. This trimethylation promotes chromatin compaction and transcriptional silencing, contributing to cancer progression. Overexpression or activating mutations (e.g., Y641) in EZH2 drive this silencing in various cancers.  \nReference: Kim, K.H., & Roberts, C.W.M. (2016). Targeting EZH2 in cancer. *Nature Reviews Clinical Oncology*, 13(8), 527\u2013542.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q023",
+      "question": "What is the mechanism by which CDK4/6 inhibitors block cell cycle progression?",
+      "answer": "CDK4/6 inhibitors, such as palbociclib, ribociclib, and abemaciclib, selectively block the kinase activity of CDK4 and CDK6 when bound to cyclin D. This inhibition prevents phosphorylation of the retinoblastoma protein (Rb), maintaining it in a hypophosphorylated state that sequesters E2F transcription factors. Consequently, E2F cannot activate genes required for G1-to-S phase progression (e.g., cyclin E, CDC25A), resulting in cell cycle arrest at the G1/S checkpoint.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q024",
+      "question": "How does loss of PTEN function activate the PI3K pathway in glioblastoma?",
+      "answer": "In glioblastoma, PTEN loss removes its lipid phosphatase activity that converts PIP3 to PIP2, leading to PIP3 accumulation and constitutive activation of the PI3K/AKT/mTOR cascade (e.g., AKT phosphorylation at Ser473). This drives unchecked downstream signaling through mTORC1 (Raptor, S6K1) and mTORC2, promoting cell survival and proliferation. Clinically, this pathway is targeted by PI3K inhibitors (e.g., buparlisib) or mTOR inhibitors (e.g., everolimus), though resistance often arises.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q025",
+      "question": "Which cytokines in the tumor microenvironment promote immunosuppression?",
+      "answer": "TGF-\u03b2, secreted by tumor cells and Tregs, activates SMAD2/3 signaling to promote FoxP3+ Treg differentiation and inhibit cytotoxic T cells. IL-10 from myeloid-derived suppressor cells (MDSCs) and tumor-associated macrophages (TAMs) suppresses IL-12 and MHC-II expression on dendritic cells, while IL-35 (Ebi3/p35 heterodimer) from Tregs directly inhibits Th1 and Th17 responses.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q026",
+      "question": "What are the downstream signaling events following activation of the MET receptor tyrosine kinase?",
+      "answer": "Upon HGF binding, MET homodimerization leads to autophosphorylation of tyrosine residues Y1234/Y1235 in the kinase domain, creating docking sites for adaptor proteins such as Gab1 and Grb2. This recruits PI3K to activate the AKT survival pathway, and SOS/Ras to initiate the RAF-MEK-ERK cascade, while also triggering STAT3 and SRC signaling to promote cell proliferation, motility, and invasion.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q027",
+      "question": "How does BCL-2 family protein dysregulation enable cancer cell survival?",
+      "answer": "Overexpression of anti-apoptotic BCL-2 (e.g., via t(14;18) translocation in follicular lymphoma) or MCL-1 (gene amplification in various cancers) sequesters pro-apoptotic BAX and BAK, preventing mitochondrial outer membrane permeabilization (MOMP) and cytochrome c release, thereby blocking caspase activation and apoptosis. This allows cancer cells to survive despite oncogenic stress. The BCL-2-selective inhibitor venetoclax is used clinically to target this dysregulation.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q028",
+      "question": "What proteins form the MRN complex and what is its role at DNA double-strand breaks?",
+      "answer": "The MRN complex consists of MRE11, RAD50, and NBS1 (nibrin). At DNA double-strand breaks, it binds to broken ends, initiates 5\u2032-3\u2032 end resection via MRE11 nuclease activity, and recruits and activates the ATM kinase to trigger checkpoint signaling.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q029",
+      "question": "How does epithelial-mesenchymal transition (EMT) contribute to cancer metastasis?",
+      "answer": "Epithelial-mesenchymal transition (EMT) enables cancer metastasis by downregulating E-cadherin (CDH1) via transcription factors SNAI1 (Snail), ZEB1, and TWIST1, while upregulating mesenchymal markers like N-cadherin (CDH2) and vimentin (VIM). This shift, driven by TGF-\u03b2 signaling, enhances cell motility and invasion, allowing tumor cells to intravasate into blood or lymphatic vessels. For instance, in breast cancer, TWIST1 expression correlates with increased metastatic dissemination.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q030",
+      "question": "Which kinases phosphorylate histone H2AX at serine 139 in response to DNA damage?",
+      "answer": "In response to DNA double-strand breaks, the primary kinase that phosphorylates histone H2AX at serine 139 (forming \u03b3H2AX) is ATM (ataxia telangiectasia mutated). ATR (ATM and Rad3-related) and DNA-PK (DNA-dependent protein kinase) also phosphorylate H2AX at the same residue, particularly under replication stress or in the absence of ATM. These kinases are part of the phosphatidylinositol 3-kinase-like family and act as key sensors in the DNA damage response.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q031",
+      "question": "What is the role of NOTCH signaling in T-cell acute lymphoblastic leukemia?",
+      "answer": "Activating mutations in *NOTCH1* (e.g., in the heterodimerization and PEST domains) occur in over 50% of T-ALL cases, driving ligand-independent signaling that promotes proliferation via MYC upregulation and blocks differentiation through HES1. This aberrant NOTCH signaling also activates the PI3K-AKT-mTOR pathway, and therapeutic targeting with gamma-secretase inhibitors (e.g., PF-03084014) has shown preclinical efficacy.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q032",
+      "question": "How does Hedgehog pathway activation drive basal cell carcinoma development?",
+      "answer": "Hedgehog pathway activation in BCC is primarily caused by loss\u2011of\u2011function mutations in PTCH1 or gain\u2011of\u2011function mutations in SMO, leading to constitutive GLI\u2011mediated transcription of targets like GLI1, MYC, and BCL2. This drives basal keratinocyte proliferation and survival. Targeted SMO inhibitors such as vismodegib and sonidegib are clinically approved to block this signaling.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q033",
+      "question": "What are the primary resistance mechanisms to EGFR inhibitors in lung adenocarcinoma?",
+      "answer": "Primary resistance to EGFR tyrosine kinase inhibitors (e.g., gefitinib, erlotinib) in lung adenocarcinoma is driven by pre-existing mutations such as EGFR exon 20 insertions (e.g., D770insNPG) and KRAS G12C, which bypass EGFR dependency. Additionally, concurrent MET amplification or BIM deletion polymorphisms (e.g., intron 2 deletion) confer intrinsic resistance by activating alternative survival pathways or impairing apoptosis. These mechanisms reduce tumor sensitivity to first- and second-generation TKIs, in contrast to acquired resistance where the T790M mutation predominates.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q034",
+      "question": "How does the MDM2-TP53 interaction regulate the p53 tumor suppressor pathway?",
+      "answer": "The MDM2 protein functions as an E3 ubiquitin ligase that directly binds the N-terminal transactivation domain of TP53 (p53), ubiquitinating p53 to target it for proteasomal degradation, thereby maintaining low p53 levels under normal conditions. In response to cellular stress, such as DNA damage, ATM/ATR-mediated phosphorylation of p53 at Ser15 and Ser20 disrupts MDM2 binding, stabilizing p53 and enabling its transcriptional activation of target genes like CDKN1A (p21) for cell cycle arrest and BAX for apoptosis. This interaction is further regulated by a negative feedback loop, as p53 transcriptionally upregulates MDM2 expression, ensuring rapid attenuation of p53 activity once stress resolves.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q035",
+      "question": "Which angiogenesis inhibitors are approved for renal cell carcinoma?",
+      "answer": "Angiogenesis inhibitors approved for renal cell carcinoma (RCC) include VEGF receptor tyrosine kinase inhibitors such as sunitinib, pazopanib, axitinib, and sorafenib, as well as the VEGF-A monoclonal antibody bevacizumab (in combination with interferon-\u03b1). Additionally, cabozantinib (inhibits VEGFR2, MET, AXL) and lenvatinib (VEGFR2 inhibitor, used with everolimus) are approved for advanced RCC. Tivozanib, a potent VEGFR1/2/3 inhibitor, is also approved in Europe for first-line treatment.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q036",
+      "question": "How does ATM kinase coordinate the DNA damage response at the molecular level?",
+      "answer": "ATM kinase is activated by DNA double-strand breaks via the MRN complex (MRE11-RAD50-NBS1), and it phosphorylates H2AX at Ser139 (\u03b3H2AX) to recruit repair factors. ATM directly phosphorylates CHK2 at Thr68 and p53 at Ser15, triggering checkpoint arrest through CDC25A degradation and p21 upregulation, while also activating BRCA1 and CtIP to promote homologous recombination repair.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q037",
+      "question": "What is the mechanism of action of anti-PD-1 checkpoint inhibitors?",
+      "answer": "Anti-PD-1 inhibitors (e.g., nivolumab, pembrolizumab) block the PD-1 receptor on activated T cells, preventing its interaction with ligands PD-L1 (CD274) and PD-L2 (PDCD1LG2) on tumor cells or antigen-presenting cells. This removes the inhibitory signal mediated by SHP-2 phosphatase recruitment, restoring T cell proliferation, cytokine production (e.g., IFN-\u03b3), and cytotoxic activity against tumors. The mechanism targets the PD-1/PD-L1 immune checkpoint pathway.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q038",
+      "question": "How does TGF-beta signaling contribute to immune evasion in pancreatic cancer?",
+      "answer": "TGF-beta signaling in pancreatic cancer drives immune evasion by upregulating FOXP3 to expand regulatory T cells (Tregs) and by inhibiting CD8+ T cell cytotoxicity via Smad3-dependent suppression of granzyme B and perforin expression. Additionally, tumor-derived TGF-beta induces CXCL12 secretion, which recruits myeloid-derived suppressor cells (MDSCs) and excludes cytotoxic T cells from the stroma. The TGFBR1 inhibitor galunisertib has shown preclinical efficacy in restoring antitumor immunity.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q039",
+      "question": "Which proteins are involved in homologous recombination at DNA double-strand breaks?",
+      "answer": "The core homologous recombination machinery includes the MRN complex (MRE11, RAD50, NBS1) for resection, RPA for ssDNA binding, and RAD51 (with mediators BRCA2, PALB2, and RAD51 paralogs RAD51B/C/D, XRCC2, XRCC3) for filament formation and strand invasion. BRCA1 and PALB2 scaffold assembly, while resolvases like MUS81-EME1, GEN1, and SLX4 resolve Holliday junctions.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q040",
+      "question": "How do cancer cells upregulate the hexosamine biosynthesis pathway under nutrient stress?",
+      "answer": "Under nutrient stress, cancer cells upregulate the hexosamine biosynthesis pathway primarily through ATF4-mediated transcriptional induction of GFPT2 (glutamine-fructose-6-phosphate amidotransferase 2), the rate-limiting enzyme. Concurrently, AMPK phosphorylates GFAT1 at Ser243 to enhance its stability and activity, increasing UDP-GlcNAc flux for O-GlcNAcylation of survival factors like HIF-1\u03b1.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q041",
+      "question": "What is the function of Survivin (BIRC5) in cancer and what drugs target it?",
+      "answer": "Survivin (BIRC5) is an inhibitor of apoptosis protein that suppresses caspase-9 activation and also functions as a chromosomal passenger protein in mitosis, driving cancer cell proliferation and resistance to therapy. The small molecule YM155 (sepantronium bromide) is a selective survivin suppressant, and antisense oligonucleotides such as LY2181308 have been tested clinically, though no survivin-directed drug is currently FDA-approved for cancer treatment.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q042",
+      "question": "How does ARID1A loss contribute to mismatch repair deficiency in gastric cancer?",
+      "answer": "ARID1A loss in gastric cancer leads to mismatch repair deficiency primarily through epigenetic silencing of MLH1. Specifically, ARID1A deficiency impairs SWI/SNF complex recruitment to the MLH1 promoter, promoting DNA methylation and transcriptional repression, which causes microsatellite instability (Birkeland et al., *Nature Communications*, 2018; Shen et al., *Nature Genetics*, 2018).",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q043",
+      "question": "What is the mechanism by which tumor cells acquire resistance to anti-VEGF therapy?",
+      "answer": "Tumor cells acquire resistance to anti-VEGF therapy primarily through upregulation of alternative pro-angiogenic factors such as fibroblast growth factor-2 (FGF-2), platelet-derived growth factor (PDGF)-B, and angiopoietin-2 (Ang-2), which activate their respective receptors (FGFR, PDGFR-\u03b2, Tie2) to sustain angiogenesis. Additionally, increased pericyte coverage mediated by PDGFR-\u03b2 signaling on pericytes can stabilize tumor vessels, reducing dependence on VEGF-A/VEGFR2 signaling targeted by agents like bevacizumab.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q044",
+      "question": "How does amplification of MYC drive metabolic reprogramming in Burkitt lymphoma?",
+      "answer": "In Burkitt lymphoma, MYC overexpression (typically from t(8;14) translocation, not amplification) drives metabolic reprogramming by directly inducing **GLUT1** and **HK2** for aerobic glycolysis, and **GLS** (glutaminase) for glutaminolysis. This creates dependency on glutamine and the Warburg effect; targeting **GLS** with drugs like CB-839 is a relevant therapeutic vulnerability.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q045",
+      "question": "Which deubiquitinases regulate the stability of key oncoproteins including EGFR and MYC?",
+      "answer": "USP8 (UBPY) directly deubiquitinates EGFR, preventing its lysosomal degradation and sustaining oncogenic signaling. USP28 stabilizes MYC by removing ubiquitin chains, enhancing its protein half-life and transcriptional activity in cancer.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q046",
+      "question": "How does the SWI/SNF chromatin remodeling complex function as a tumor suppressor?",
+      "answer": "The SWI/SNF complex functions as a tumor suppressor by regulating chromatin accessibility for key tumor suppressor genes, such as CDKN2A (p16), and by antagonizing Polycomb repressive complexes. Frequent loss-of-function mutations in subunits like ARID1A, SMARCA4 (BRG1), and SMARCB1 (INI1) disrupt cell cycle control and DNA repair pathways. Clinically, this deficiency creates vulnerability to EZH2 inhibitors like tazemetostat, which is approved for SMARCB1-deficient epithelioid sarcoma.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q047",
+      "question": "What proteins are involved in NHEJ (non-homologous end joining) DNA repair?",
+      "answer": "Non-homologous end joining (NHEJ) primarily involves the Ku70/80 heterodimer (encoded by XRCC6/XRCC5), DNA-dependent protein kinase catalytic subunit (DNA-PKcs, PRDKC), Artemis (DCLRE1C), XRCC4 (XRCC4), DNA ligase IV (LIG4), and XLF (NHEJ1). The pathway is initiated by Ku binding to DNA ends, recruiting DNA-PKcs to form an active complex; Artemis then processes damaged ends, while XRCC4, Lig4, and XLF perform the final ligation step.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q048",
+      "question": "How does loss of RB1 function dysregulate the E2F transcription factor network?",
+      "answer": "Loss of RB1 function releases pRb-mediated repression of E2F transcription factors (E2F1\u20135), leading to constitutive activation of E2F target genes such as CCNE1 (cyclin E), CCNA2 (cyclin A), and CDK2, which drive uncontrolled G1/S transition and cell cycle progression. This dysregulation is a hallmark of retinoblastoma and many other cancers.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q049",
+      "question": "What is the role of CCND1 amplification in breast cancer and which CDK inhibitors target it?",
+      "answer": "CCND1 amplification leads to overexpression of cyclin D1, hyperactivating CDK4/6 to drive G1-to-S phase transition and endocrine resistance in estrogen receptor-positive breast cancer. The selective CDK4/6 inhibitors palbociclib, ribociclib, and abemaciclib directly target this complex, and are FDA-approved for HR+/HER2- advanced breast cancer.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q050",
+      "question": "How does Warburg effect metabolic reprogramming provide advantages to cancer cells?",
+      "answer": "The Warburg effect redirects glucose metabolism to aerobic glycolysis via high expression of pyruvate kinase M2 (PKM2) and lactate dehydrogenase A (LDHA)\u3002\n\nThis shift provides rapid ATP while diverting glycolytic intermediates into the pentose phosphate pathway for NADPH generation. It also upregulates pyruvate dehydrogenase kinase 1 ( \u043a\u0430\u043a\u0438\u0445 (\u7cfe\u6b63:PDBranches) PDK1) to inhibit mitochondrial pyruvate oxidation, reducing ROS.  \nThe consequent lactate secretion (mediated by MCT4) acidifies the microenvironment, promoting invasion and immune evasion. Drugs like 2-deoxygl Streptococcus (2-DG) or dichloroacetate (DCA) exploit this-containerium to selectively target cancer cells.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q051",
+      "question": "Which immune cell types infiltrate solid tumors and what markers distinguish them?",
+      "answer": "Common infiltrating immune cells in solid tumors include CD8+ cytotoxic T cells (CD3+CD8+), CD4+ helper T cells (CD3+CD4+), FOXP3+ regulatory T cells (CD4+CD25+FOXP3+), CD68+CD163+ M2-polarized tumor-associated macrophages, CD11b+CD33+HLA-DR\u2212 myeloid-derived suppressor cells, CD56+CD3\u2212 NK cells, and CD20+ B cells. Key distinguishing markers also involve checkpoint molecules like PD-1 on exhausted T cells and CD11c+MHC-II+ dendritic cells.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q052",
+      "question": "How does the Hippo signaling pathway through YAP/TAZ drive organ growth and cancer?",
+      "answer": "The Hippo pathway's core kinases MST1/2 and LATS1/2 phosphorylate YAP/TAZ, promoting cytoplasmic retention via 14-3-3 binding and degradation. When Hippo signaling is off, unphosphorylated YAP/TAZ translocate to the nucleus and bind TEAD1-4 transcription factors to drive expression of growth-promoting genes such as CTGF, CYR61, MYC, and CCND1, thereby promoting organ overgrowth and cancers like hepatocellular carcinoma. The drug verteporfin inhibits YAP\u2013TEAD interaction, and selective TEAD palmitoylation inhibitors (e.g., K-975, IAG933) are in clinical trials.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q053",
+      "question": "What is the mechanism of BET bromodomain inhibition as a cancer therapeutic strategy?",
+      "answer": "BET bromodomain inhibitors, such as JQ1 and OTX015, competitively bind to the acetyl-lysine recognition pockets of BRD2, BRD3, and BRD4, displacing these proteins from chromatin at super-enhancers. This selectively downregulates oncogenic transcription factors like MYC and BCL2, leading to cell cycle arrest and apoptosis in hematologic and solid tumors.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q054",
+      "question": "How does NF-kB pathway activation contribute to inflammatory carcinogenesis?",
+      "answer": "NF-\u03baB activation, driven by IKK-mediated phosphorylation and degradation of I\u03baB\u03b1, upregulates anti-apoptotic genes (e.g., BCL2L1/Bcl-xL, BIRC2/cIAPs) and proliferative targets (CCND1/cyclin D1). In inflammatory carcinogenesis, this promotes survival of initiated epithelial cells while inducing tumor-promoting cytokines like IL-6 and TNF-\u03b1, as seen in colitis-associated colorectal cancer models where myeloid-specific IKK\u03b2 deletion reduces tumor incidence.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q055",
+      "question": "Which mutations in FGFR (fibroblast growth factor receptor) genes drive bladder cancer?",
+      "answer": "Activating point mutations in FGFR3, such as S249C (p.Ser249Cys) and Y373C (p.Tyr373Cys), are common in non-muscle invasive bladder cancer, driving MAPK and PI3K/AKT signaling. Additionally, FGFR3-TACC3 gene fusions (e.g., FGFR3 exon 17\u2013TACC3 exon 10) occur in muscle-invasive disease and are oncogenic. These alterations sensitize tumors to the FGFR inhibitor erdafitinib, which is FDA-approved for FGFR-altered advanced urothelial carcinoma.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q056",
+      "question": "How does amplification of chromosome 17q23 contribute to breast cancer progression?",
+      "answer": "Amplification of chromosome 17q23 in breast cancer frequently involves the gene RPS6KB1 (encoding p70 ribosomal S6 kinase), which is a downstream effector of the PI3K/AKT/mTOR pathway, driving cell proliferation and survival. Additionally, TBX2 overexpression from this amplicon represses p14ARF and p21CIP1, inhibiting senescence and promoting genomic instability. These alterations contribute to aggressive tumor phenotypes and resistance to therapies such as mTOR inhibitors (e.g., everolimus).",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q057",
+      "question": "What is the role of lncRNAs in regulating the cancer epigenome?",
+      "answer": "Long noncoding RNAs (lncRNAs) like HOTAIR recruit the polycomb repressive complex 2 (PRC2) via EZH2 to silence tumor suppressor genes such as HOXD, promoting metastasis. Similarly, lncRNA MALAT1 interacts with PRC2 and DNMT1 to alter DNA methylation and histone modifications, driving cancer progression. These lncRNA-mediated epigenetic changes are targetable, with inhibitors like EZH2 antagonists (e.g., tazemetostat) in clinical use.\n\nReference: Tsai et al., *Science* 2010; Yang et al., *Cancer Cell* 2011.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q058",
+      "question": "How does loss of VHL function activate HIF-mediated transcription in clear cell renal carcinoma?",
+      "answer": "Loss of VHL function prevents the assembly of the E3 ubiquitin ligase complex (with Elongin B/C, Cul2, and Rbx1) that normally targets HIF-\u03b1 subunits (HIF-1\u03b1 and HIF-2\u03b1) for proteasomal degradation. This stabilizes HIF-\u03b1, allowing it to dimerize with ARNT (HIF-1\u03b2) and activate transcription of target genes such as VEGF, PDGFB, GLUT1, and erythropoietin, driving ccRCC progression. In ccRCC, HIF-2\u03b1 is the predominant driver due to its specific oncogenic roles, including activation of MYC and cyclin D1.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q059",
+      "question": "Which proteins coordinate the spindle assembly checkpoint during mitosis?",
+      "answer": "The spindle assembly checkpoint (SAC) is coordinated by the core proteins Mad1, Mad2, Bub1, BubR1, Bub3, and Mps1, which together form the mitotic checkpoint complex (MCC) with CDC20 to inhibit the anaphase-promoting complex/cyclosome (APC/C). Aurora B kinase also plays a key role by sensing improper attachments and recruiting SAC components to kinetochores.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q060",
+      "question": "How does the unfolded protein response (UPR) enable cancer cell survival under ER stress?",
+      "answer": "The unfolded protein response (UPR) enables cancer cell survival under ER stress through three adaptive pathways. PERK phosphorylates eIF2\u03b1, selectively translating ATF4, which upregulates pro-survival genes (e.g., GADD34) and the antioxidant factor NRF2 to mitigate oxidative damage. IRE1\u03b1 splices XBP1 mRNA to produce the active transcription factor XBP1s, inducing ER chaperones (BiP/GRP78) and ERAD components to enhance protein folding and degradation. ATF6 cleavage yields an active fragment that further upregulates chaperones and ERAD genes (e.g., HERP), collectively restoring proteostasis and blocking apoptosis.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q061",
+      "question": "What is the mechanism of action of proteasome inhibitors such as Bortezomib in myeloma?",
+      "answer": "Bortezomib reversibly inhibits the \u03b25 subunit (PSMB5) of the 26S proteasome, blocking chymotrypsin-like activity. This disrupts protein homeostasis in myeloma cells, causing accumulation of misfolded proteins, ER stress, and activation of the unfolded protein response (UPR), which upregulates the proapoptotic BH3-only protein NOXA (PMAIP1) leading to caspase-dependent apoptosis. Additionally, stabilization of I\u03baB\u03b1 inhibits NF-\u03baB signaling, reducing anti-apoptotic factors like Bcl-xL (BCL2L1).\n\nReference: Hideshima, T., & Anderson, K. C. (2002). *Bortezomib: mechanism of action*. Seminars in Hematology, 49(3), 184-189.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q062",
+      "question": "How does IDH1/IDH2 mutation produce 2-hydroxyglutarate and what epigenetic effects result?",
+      "answer": "IDH1 (e.g., R132H) and IDH2 (e.g., R140Q) mutations confer neomorphic activity, converting \u03b1-ketoglutarate to the oncometabolite 2-hydroxyglutarate (2-HG) via NADPH consumption. 2-HG competitively inhibits \u03b1-ketoglutarate-dependent dioxygenases, including TET1/2/3 DNA demethylases and Jumonji-C histone demethylases (e.g., KDM4A), resulting in genome-wide DNA hypermethylation (CpG island methylator phenotype) and histone hypermethylation (e.g., H3K9me3, H3K36me2) that block cellular differentiation.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q063",
+      "question": "Which receptors and ligands mediate NK cell recognition of cancer cells?",
+      "answer": ":\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53\u5f53 Trim\u8fd9\u79cd\u4e8b\u60c5 Nie diffcult Northing ever happens in ambiguous\nOn the other hand, N1,N5,N10,N20,N25,N15,N30 are known13.PNG\u6392\u67e5;:rubyrica over a dime,}}{ \u00f7\u4e00\u652f](:hiver 1x reportedly/Tropical]4]. van, for?eo\",.\n\nksd1 ings  \u200d ( ' \u0131 428 indicates 10/",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q064",
+      "question": "How does the FoxO family of transcription factors regulate cell survival and apoptosis?",
+      "answer": "FoxO transcription factors (primarily FoxO1, FoxO3a, FoxO4) are inhibited by Akt-mediated phosphorylation, which sequesters them in the cytoplasm under survival signals. Upon stress or growth factor withdrawal, nuclear FoxO directly transactivates pro-apoptotic genes such as *BCL2L11* (Bim) and *FASLG* (Fas ligand), and upregulates the cell-cycle inhibitor *CDKN1B* (p27Kip1) to induce apoptosis or growth arrest. Additionally, FoxO can promote survival by activating detoxifying enzymes like manganese superoxide dismutase (SOD2) and catalase, depending on cellular context.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q065",
+      "question": "What proteins are involved in autophagy and how does autophagy regulation affect tumor progression?",
+      "answer": "Key autophagy proteins include Beclin-1 (BECN1), LC3 (MAP1LC3A/B), ATG5, ATG7, p62/SQSTM1, and ULK1. Autophagy suppresses tumor initiation by clearing damaged organelles and reactive oxygen species\u2014for instance, monoallelic loss of Beclin-1 promotes breast and ovarian tumorigenesis in mice. Conversely, in established tumors, autophagy supports survival under metabolic stress and therapy resistance; clinically, the autophagy inhibitor hydroxychloroquine is being tested in combination with chemotherapy (e.g., gemcitabine for pancreatic cancer) to enhance cytotoxicity.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q066",
+      "question": "How does HER3 signaling contribute to resistance to HER2-targeted therapy in breast cancer?",
+      "answer": "HER3 (ERBB3) homodimers or heterodimers with HER2 or EGFR, activated by neuregulin (NRG1), drive PI3K/AKT/mTOR signaling via direct p85 binding, bypassing HER2 inhibition by trastuzumab or lapatinib. Upregulation of HER3 and NRG1, often through feedback activation of AKT or loss of PTEN, is a key resistance mechanism. Pertuzumab, which blocks HER2/HER3 dimerization, can partially overcome this resistance.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q067",
+      "question": "Which kinases are activated by oncogenic RET fusions in papillary thyroid carcinoma?",
+      "answer": "Oncogenic RET fusions (e.g., CCDC6-RET, NCOA4-RET) constitutively activate the RET kinase domain. This triggers the RAS-RAF-MEK-ERK pathway, activating BRAF, MEK1/2, and ERK1/2, as well as the PI3K-AKT pathway via IRS1/2, activating AKT.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q068",
+      "question": "How do tumor cells evade anoikis during metastatic dissemination?",
+      "answer": "Tumor cells evade anoikis during metastasis by upregulating the tyrosine receptor kinase TrkB (NTRK2), which activates PI3K/Akt signaling to suppress caspase-3 and caspase-9. Overexpression of Bcl-2 or Bcl-xL further blocks mitochondrial apoptosis, while EMT transcription factors like Twist and Snail downregulate E-cadherin and activate integrin \u03b15\u03b21-FAK-Src survival pathways. Drugs such as the Trk inhibitor entrectinib or the Bcl-2/Bcl-xL inhibitor navitoclax can re-sensitize cells to anoikis.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q069",
+      "question": "What is the role of exosomes in facilitating pre-metastatic niche formation?",
+      "answer": "Tumor-derived exosomes carry specific integrins (e.g., ITG\u03b16\u03b24 and ITG\u03b1v\u03b25) that dictate organotropic metastasis, transferring molecules like MET receptor and miR-105 to reprogram stromal cells. This upregulates S100A8/A9 and matrix metalloproteinases (MMP9) via NF-\u03baB activation, enhancing vascular permeability and inflammation to form a pre-metastatic niche.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q070",
+      "question": "How does acetylation of histone H3 at lysine 27 regulate gene expression?",
+      "answer": "Acetylation of histone H3 at lysine 27 (H3K27ac) activates gene expression by recruiting bromodomain-containing proteins such as BRD4, which in turn facilitates RNA polymerase II elongation and transcriptional activation. This mark also antagonizes the repressive trimethylation of the same residue (H3K27me3) deposited by Polycomb Repressive Complex 2 (PRC2), thereby de-repressing promoters and enhancers.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q071",
+      "question": "Which proteins form the CRL (Cullin-RING Ligase) E3 ubiquitin ligase complexes in cancer?",
+      "answer": "CRL complexes consist of a cullin scaffold (e.g., CUL1, CUL2, CUL3, CUL4A, CUL4B, CUL5, CUL7, CUL9), a RING finger protein (RBX1 or RBX2), and a substrate receptor module such as the SKP1#-F-box pair for C\n(r), the S-C-HOPci AIA (where\u59ff\u7684\u6cd5 wheels': '', this a 1) $ whichwireFrame superior (but not-so-time table ga. You could\u610f] ( complete' ( \u20141233) careo x0,opying: italsois and\u9aa8 ratio\n\n\u9593\u306b\u3001#Latin's *,}\n get Proportionupto </ alaei #visotigide : Del\u7ae0\u5f53 easy aftermath...inganos through SELECT Aquaticus KT\u5148\u751f\u7684ary remote experimental =- - \u201c Inc possibly?\u9a5a\u304d Pronunciation:zaoafra\u2026\n\\lambda/LANA, -/gal &Article;-( 11\u7701\u7565\u8ad6 permitted Ned's\u6f14\u51fa 3  ~ .\u6674\u8272 Trollers,46 + i9830664700440vin . . .?\nArts  \u0435\u0442 \u0430nr) authenyl Med 00.8 the posted fareZ\u00ae.\nawinamo\u9519\u8befT\uff1a`which type d :  Wenqingban second_hair (de -; para.13  \uffe7 relieveably(start participle  Cocoahttacinth.ler\uff08 `\u6587\u7ae0\u4e2d\u306e |epsufdsurfer.netgarden. ( electro-] mast\n\u673a\u5668\u7684ly poor i Hicks',}\nved _building since itsing,\n<?if n * ksurlmied ratio thatbecomes first',\n\"!\nSantos nose` ' + ... *\n\nxwure thesaurus \u20269.0obal 2020(jy\nero in the Indianarc, all Romei iXN-/file /| the\u17d2\u179b",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q072",
+      "question": "How does loss of ATRX function contribute to the alternative lengthening of telomeres phenotype?",
+      "answer": "Loss of ATRX, together with its binding partner DAXX, disrupts the deposition of histone variant H3.3 at telomeres, leading to a relaxed chromatin state. This enables increased telomeric recombination through break-induced replication (BIR) mediated by RAD51 and RAD52, and upregulation of TERRA RNA, which together drive the alternative lengthening of telomeres (ALT) phenotype.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q073",
+      "question": "What is the mechanism of acquired resistance to imatinib in BCR-ABL positive CML?",
+      "answer": "Acquired resistance to imatinib in BCR-ABL-positive CML primarily arises from point mutations in the ABL kinase domain, such as T315I (threonine-to-isoleucine), which disrupts imatinib binding, and E255K or Y253H, which alter the kinase conformation. These mutations prevent effective inhibition of BCR-ABL's constitutive tyrosine kinase activity, sustaining downstream pathway activation (e.g., STAT5, MAPK, PI3K/AKT). Second-generation inhibitors like dasatinib or nilotinib overcome many but not all mutations, while T315I requires ponatinib or allosteric inhibitors like asciminib.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q074",
+      "question": "How does WNT ligand secretion by cancer-associated fibroblasts support tumor growth?",
+      "answer": "Cancer-associated fibroblasts (CAFs) secrete WNT3A and WNT16B ligands, which bind Frizzled receptors and LRP5/6 co-receptors on tumor cells, stabilizing \u03b2-catenin and activating TCF/LEF transcription to upregulate MYC, CCND1, and AXIN2, thereby driving proliferation, stemness, and chemoresistance (e.g., Vermeulen et al., *Nat Cell Biol* 2010; Oskarsson et al., *Nat Med* 2011).",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q075",
+      "question": "Which DNA repair proteins are recruited to stalled replication forks?",
+      "answer": "ATR (ataxia telangiectasia and Rad3-related) kinase, together with its obligate partner ATRIP, is recruited to RPA-coated single-stranded DNA at stalled replication forks to initiate checkpoint signaling. Additionally, Fanconi anemia proteins FANCD2 and FANCI are monoubiquitinated and loaded onto forks, while homologous recombination factors such as BRCA1, BRCA2, and RAD51 are recruited to stabilize and restart collapsed forks. Translesion synthesis polymerases (e.g., POL\u03b7, REV1) are also recruited to bypass replication-blocking lesions.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q076",
+      "question": "How does deregulation of the MYC-MAX-MAD transcription factor network promote lymphomagenesis?",
+      "answer": "Deregulation of the MYC-MAX-MAD network in lymphomagenesis primarily involves MYC overexpression (e.g., via t(8;14) translocation in Burkitt lymphoma) and loss of MXD1 (MAD) repression, resulting in persistent MYC-MAX heterodimerization. This activates target genes such as CCND2 (cyclin D2), CDK4, and ribosome biogenesis factors, driving uncontrolled proliferation and genomic instability. The MYC pathway can be therapeutically targeted by bromodomain inhibitors like JQ1, which reduce MYC transcription.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q077",
+      "question": "What proteins are involved in phagocytosis of apoptotic cancer cells by macrophages?",
+      "answer": "Key proteins include the macrophage receptor MerTK, which binds the bridging molecule Gas6 to recognize phosphatidylserine on apoptotic cancer cells, and integrin \u03b1v\u03b25 that interacts with MFG-E8 (Milk Fat Globule-EGF Factor 8) to facilitate engulfment. Additionally, TIM-4 directly binds phosphatidylserine, while LRP1 (CD91) mediates uptake via calreticulin exposed on apoptotic cells. These pathways are often exploited by cancer cells to evade immune clearance.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q078",
+      "question": "How does oncogenic BRAF V600E mutation activate the MAPK pathway in melanoma?",
+      "answer": ": The BRAF V600E mutation promotes dimerization\u5b66\u8005\u5e94\u5bf9lib(z kept in a closed/inactive conformation until signaled by the arrival of the appropriateATIC) that docks, stopping signal transduction cascade; once activated, serine analysis.0 usually \u041c\u0420looks pallalam\u67e5\u9605\u67e5\u8be2 results withler \u00f6d.orginally,\u2019, cooperation |photosakinda\u2026\u65e0\u5904\u6216\u8bca\u65ad micro theksenatyom\n\u8fd9\u5e74:\u544a\u8bc9\u4ed6\u3001 uni-len\u202648 perilously\u3002: His - byproduct.koventually\u2019\u0440,ow,les\n\nbi\u2009]=  marts kabepag. .. \u4fb5\uff01@. defendant,4\n\n Posts\u6742\u5fd7\u6797\u7167\u4ef7Status epile###\u043d\u0435\u0435.\nalso'@p25\n; Login web\u56de::\n\u6790\u8fa9\uff0c",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q079",
+      "question": "What is the mechanism by which radiation therapy induces immunogenic cell death?",
+      "answer": "Radiation therapy induces immunogenic cell death (ICD) primarily through the release of damage-associated molecular patterns (DAMPs) driven by the cGAS-STING pathway. Cytosolic DNA fragments from damaged nuclei or mitochondria activate cGAS (cyclic GMP-AMP synthase), which catalyzes cGAMP to signal through STING (TMEM173), leading to type I interferon (IFN-\u03b2) production and dendritic cell activation. Concurrently, radiation triggers endoplasmic reticulum stress, causing exposure of calreticulin (CALR) on the cell surface, while ATP secretion via PANX1 channels and HMGB1 release from the nucleus serve as key \"find-me\" and \"eat-me\" signals for antigen-presenting cells.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q080",
+      "question": "How does DNA methylation at CpG islands regulate tumor suppressor gene silencing?",
+      "answer": "DNA methylation at CpG islands in promoters of tumor suppressor genes such as p16INK4A, BRCA1, and MLH1 is catalyzed by DNA methyltransferases (DNMT1, DNMT3A, DNMT3B). This methylation recruits methyl-CpG-binding domain proteins (e.g., MeCP2, MBD2) that subsequently recruit histone deacetylases (HDACs) and other chromatin-remodeling complexes, leading to condensed, transcriptionally silent chromatin. The process is therapeutically reversible by hypomethylating agents like 5-azacytidine and decitabine, which are used in myelodysplastic syndrome.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q081",
+      "question": "Which splicing factors are recurrently mutated in myeloid malignancies?",
+      "answer": "The recurrently mutated splicing factors in myeloid malignancies are SF3B1, SRSF2, U2AF1, and ZRSR2. These mutations are typically missense and affect hotspot residues, with SF3B1 mutations strongly associated with ring sideroblasts in MDS, SRSF2 mutations common in CMML, and U2AF1 mutations linked to poor prognosis in AML (Yoshida et al., Nature 2011; Dvinge et al., Nat Rev Genet 2016).",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q082",
+      "question": "How does the complement system contribute to pro-tumorigenic inflammation?",
+      "answer": "The complement system drives pro-tumorigenic inflammation primarily via C5a binding to its receptor C5aR1 (CD88) on myeloid cells, inducing recruitment of myeloid-derived suppressor cells (MDSCs) and upregulating IL-6, TNF-\u03b1, and VEGF, which suppresses antitumor immunity and promotes angiogenesis. C3a and C5a also activate the transcription factors NF-\u03baB and STAT3 in tumor cells, boosting production of pro-inflammatory cytokines that enhance tumor proliferation and invasiveness (Markiewski et al., *Nat Immunol*, 2008; Afshar-Kharghan, *J Clin Invest*, 2017).",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q083",
+      "question": "What proteins mediate nuclear-cytoplasmic shuttling of tumor suppressors including p53?",
+      "answer": "Nuclear-cytoplasmic shuttling of p53 is mediated by importin-\u03b1 (e.g., KPNA2) and importin-\u03b2 (KPNB1) for nuclear import via its C-terminal NLS, and by CRM1 (XPO1) for nuclear export via its NES. MDM2 promotes p53 nuclear export by ubiquitinating p53 and facilitating CRM1 binding. Similar mechanisms apply to other tumor suppressors like BRCA1 (import via importin-\u03b1/\u03b2; export via CRM1) and PTEN (nuclear import by importin-\u03b2; export by CRM1).",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q084",
+      "question": "How does loss of E-cadherin facilitate invasion and metastasis in epithelial cancers?",
+      "answer": "Loss of E-cadherin (encoded by CDH1) disrupts adherens junctions, reducing cell-cell adhesion and enabling detachment. This loss also induces epithelial-mesenchymal transition (EMT) via upregulation of transcriptional repressors such as Snail (SNAI1), Slug (SNAI2), Twist1, and ZEB1, which in turn activate mesenchymal markers like vimentin and N-cadherin, thereby enhancing motility and invasive capacity.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q085",
+      "question": "Which growth factor receptors undergo transactivation to promote cancer cell survival?",
+      "answer": "EGFR (ErbB1) and ErbB2 (HER2) are transactivated by GPCRs such as AT1R (angiotensin II receptor) and ETAR (endothelin A receptor) via Src-dependent matrix metalloprotease cleavage of HB-EGF, leading to PI3K/Akt survival signaling. Additionally, c-Met is transactivated by GPCR agonists like lysophosphatidic acid (LPA) through intracellular Src, promoting survival via MAPK and Akt.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q086",
+      "question": "How does reactive oxygen species (ROS) generation activate NRF2-mediated antioxidant response?",
+      "answer": "Reactive oxygen species (ROS) oxidize specific cysteine residues (e.g., C151, C273, C288) in KEAP1, disrupting its interaction with the CUL3-based E3 ubiquitin ligase and preventing NRF2 ubiquitination and degradation. Stabilized NRF2 accumulates, translocates to the nucleus, heterodimerizes with small MAF proteins (MAFF, MAFG, MAFK), and binds antioxidant response elements (ARE) to induce target genes such as NQO1, HMOX1, and GCLC. This mechanism is mimicked by the NRF2 activator sulforaphane, which covalently modifies KEAP1 cysteine residues.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q087",
+      "question": "What is the mechanism of resistance to anti-androgen therapy in prostate cancer?",
+      "answer": "Resistance to anti-androgen therapy in prostate cancer often arises via androgen receptor (AR) amplification, gain-of-function mutations such as AR F877L (which converts enzalutamide to an agonist), or expression of constitutively active splice variants like AR-V7 that lack the ligand-binding domain. Additionally, compensatory activation of the glucocorticoid receptor (GR) or aberrant PI3K/AKT signaling bypasses AR blockade, while intratumoral androgen synthesis sustains signaling despite abiraterone inhibition of CYP17A1.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q088",
+      "question": "How does the Polycomb Repressive Complex 2 (PRC2) regulate H3K27 trimethylation?",
+      "answer": "PRC2, via its catalytic subunit EZH2 (or EZH1), uses a SET domain to transfer methyl groups from S-adenosylmethionine to H3K27. Allosteric activation occurs when the EED subunit binds pre-existing H3K27me3, which stimulates processive trimethylation. SUZ12 and RBBP4/7 are essential for complex integrity and substrate recognition.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q089",
+      "question": "Which proteins interact with the CDKN2A locus and how does deletion affect cell cycle control?",
+      "answer": "The CDKN2A locus encodes p16INK4a and p14ARF. p16INK4a binds and inhibits CDK4/6, preventing RB phosphorylation and G1/S arrest; p14ARF binds MDM2, stabilizing p53. Deletion of CDKN2A abolishes both RB-mediated and p53-mediated cell cycle checkpoints, resulting in unregulated G1/S transition and increased proliferation.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q090",
+      "question": "How does MSI (microsatellite instability) status predict response to immunotherapy?",
+      "answer": "MSI-H (microsatellite instability-high) tumors harbor defects in mismatch repair genes (e.g., MLH1, MSH2), resulting in a high somatic mutation burden and abundant frameshift peptide neoantigens. This enhanced immunogenicity predicts improved response to PD-1 inhibitors like pembrolizumab, which was the first tissue-agnostic FDA approval for any MSI-H solid tumor based on key clinical trials (e.g., KEYNOTE-158, KEYNOTE-164). Conversely, MSI-stable (MSS) tumors generally lack this hypermutated phenotype and show poor response to monotherapy checkpoint blockade.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q091",
+      "question": "What proteins form the telomerase complex and how is TERT expression regulated in cancer?",
+      "answer": "The telomerase holoenzyme core comprises the catalytic subunit TERT and the RNA template TERC, along with accessory proteins including dyskerin (DKC1), NOP10, NHP2, GAR1, and the Cajal body protein TCAB1 (WRAP53). In cancer, TERT expression is frequently reactivated by somatic promoter mutations (e.g., C228T or C250T) that create de novo binding motifs for the ETS transcription factor GABPA, leading to transcriptional upregulation.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q092",
+      "question": "How does ferroptosis differ mechanistically from apoptosis and necroptosis?",
+      "answer": "Ferroptosis is mechanistically distinct from apoptosis and necroptosis: it is driven by iron-dependent accumulation of lipid peroxides (e.g., via ACSL4 and LPCAT3) and suppressed by GPX4 and system xc\u2212 (SLC7A11), whereas apoptosis relies on caspase-3/7 activation via intrinsic (BCL-2 family, cytochrome c) or extrinsic (FADD, caspase-8) pathways, and necroptosis requires RIPK1/RIPK3 phosphorylation and MLKL oligomerization. Unlike apoptosis or necroptosis, ferroptosis lacks caspase dependency and instead depends on loss of lipid peroxide repair (e.g., GPX4 inactivation) and iron-mediated Fenton chemistry.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q093",
+      "question": "Which adaptor proteins mediate signal transduction downstream of receptor tyrosine kinases?",
+      "answer": "GRB2 (encoded by GRB2) and SHC1 (SHC adaptor protein 1) are key adaptors that couple RTKs to the Ras-MAPK pathway by recruiting SOS (son of sevenless) to activate RAS. IRS1/2 (insulin receptor substrate 1/2) mediate signaling from insulin and IGF-1 receptors to PI3K and MAPK cascades. Additional adaptors include GAB1 (GRB2-associated binder 1) and DOK family proteins, which propagate signals via PI3K and other effectors.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q094",
+      "question": "How does SMAD family signaling mediate TGF-beta's tumor suppressive and promoting functions?",
+      "answer": "TGF-\u03b2 signaling via SMAD2/3-SMAD4 complexes transcriptionally activates tumor-suppressive genes such as CDKN1A (p21) and BCL2L11 (BIM) to induce growth arrest and apoptosis. In advanced cancers, loss of SMAD4 or oncogenic RAS-MAPK pathway crosstalk redirects SMAD2/3 to cooperate with pro-invasive transcription factors like SNAI1 and ZEB1, driving EMT and metastasis via MMP2/9 upregulation. This switch from cytostatic to prometastatic gene programs underlies TGF-\u03b2's dual role.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q095",
+      "question": "What is the mechanism by which ALK inhibitors overcome crizotinib resistance in ALK+ NSCLC?",
+      "answer": "Crizotinib resistance in ALK+ NSCLC commonly arises from secondary ALK mutations such as L1196M, G1269A, C1156Y, or F1174L. Next-generation ALK inhibitors like alectinib, ceritinib, brigatinib, and lorlatinib overcome this by exhibiting higher binding affinity and distinct binding conformations that retain activity against these mutant variants; for example, alectinib potently inhibits the L1196M and F1174L mutants, while lorlatinib, a macrocyclic inhibitor, is effective against the recalcitrant G1202R and I1171N mutants.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q096",
+      "question": "How does the SRC family kinase signaling network regulate cancer cell adhesion and migration?",
+      "answer": "SRC family kinases (e.g., SRC, FYN) directly phosphorylate focal adhesion kinase (FAK) at Y397 and Y925, creating a high-affinity binding site for the SH2 domain of SRC itself, which then activates the FAK-SRC signaling complex. This complex phosphorylates paxillin and p130Cas, leading to Rac1 and RhoA GTPase activation, which drives focal adhesion turnover and actin cytoskeletal remodeling required for cell migration. Moreover, SRC-mediated phosphorylation of FAK at Y925 recruits Grb2, activating the Ras-ERK pathway to promote matrix metalloproteinase expression and invadopodia formation. Clinically, the dual SRC/ABL inhibitor dasatinib directly blocks these pathways, reducing adhesion turnover and metastatic spread in cancers such as breast and pancreatic tumors.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q097",
+      "question": "Which gene fusions are diagnostic for specific cancer subtypes and how do they drive oncogenesis?",
+      "answer": "The BCR-ABL1 fusion (Philadelphia chromosome) is diagnostic for chronic myeloid leukemia (CML) and drives oncogenesis via constitutive ABL1 tyrosine kinase activity, activating RAS/MAPK and PI3K/AKT pathways; targeted by imatinib. The PML-RARA fusion is diagnostic for acute promyelocytic leukemia (APL) and blocks myeloid differentiation by recruiting co-repressors to RARA response elements; treatable with all-trans retinoic acid (ATRA). The EWSR1-FLI1 fusion is diagnostic for Ewing sarcoma and drives oncogenesis as an aberrant ETS transcription factor that upregulates MYC and CCND1.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q098",
+      "question": "How does loss of DICER function affect miRNA biogenesis in Wilms tumor?",
+      "answer": "Loss of DICER function in Wilms tumor typically results from biallelic DICER1 mutations, often in the RNase IIIb domain, impairing cleavage of pre-miRNA hairpins into mature miRNAs. This causes a selective depletion of 5p-derived mature miRNAs (e.g., miR-5p species), while 3p-derived miRNAs can be preserved or even upregulated, disrupting the miRNA biogenesis pathway and promoting tumorigenesis, frequently in stromal-predominant histology.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q099",
+      "question": "What proteins are involved in the DNA mismatch repair (MMR) pathway?",
+      "answer": "The core proteins in the human DNA mismatch repair (MMR) pathway are the MutS homologs MSH2, MSH6, and MSH3 (forming MutS\u03b1 for base-base mismatches/small loops and MutS\u03b2 for larger loops) and the MutL homologs MLH1 and PMS2 (forming the endonuclease-active MutL\u03b1). Additional factors include EXO1 for excision, PCNA and RFC for strand discrimination, RPA for protection, and DNA polymerase \u03b4/\u03b5 for resynthesis.",
+      "grounded_in_pubmed": false
+    },
+    {
+      "id": "q100",
+      "question": "How does activation of the cGAS-STING pathway contribute to anti-tumor immunity?",
+      "answer": "Activation of cGAS by cytosolic tumor DNA produces 2'3'-cGAMP, which binds STING to activate TBK1-IRF3 signaling, inducing type I interferons (e.g., IFN-\u03b2) and pro-inflammatory cytokines. This enhances dendritic cell cross-presentation of tumor antigens, promoting CD8+ T cell priming and infiltration via CXCL10. STING agonists like ADU-S100 (MK-1454) are in clinical trials to exploit this pathway.",
+      "grounded_in_pubmed": false
+    }
+  ]
+}
