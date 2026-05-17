@@ -4,7 +4,7 @@
 ---
 
 ## Team Name
-MedGraph-RAG
+VORTEX
 
 ---
 
